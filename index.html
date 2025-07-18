@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Bakery Delights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#A53860',
+                        secondary: '#c2185b',
+                        light: '#fef5f8',
+                        dark: '#333333'
+                    },
+                    boxShadow: {
+                        'nav': '0 2px 5px rgba(0, 0, 0, 0.05)',
+                        'main-nav': '0 2px 15px rgba(0, 0, 0, 0.05)',
+                        'dropdown': '0 15px 30px rgba(0,0,0,0.12)',
+                        'card': '0 4px 10px rgba(0,0,0,0.1)',
+                        'btn': '0 4px 15px rgba(233, 30, 99, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .clip-ellipse {
+                clip-path: ellipse(75% 60% at 50% 35%);
+            }
+            .transform-perspective {
+                transform: perspective(1000px) rotateX(5deg);
+            }
+            .text-shadow {
+                text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            }
+            .text-shadow-lg {
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header will be loaded here -->
+    <div id="header-container"></div>
+    <!-- Image Banner Carousel Section -->
+<section class="relative h-[70vh] min-h-[500px] max-h-[800px] bg-black overflow-hidden">
+    <!-- Carousel Container -->
+    <div class="relative h-full w-full" id="banner-carousel">
+        <!-- Banner 1 -->
+        <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100" data-carousel-item>
+            <div class="absolute inset-0 z-10 bg-black bg-opacity-30"></div>
+            <img src="IMG/MAIN BANNER 7.jpg" alt="Artisan Bakery" class="absolute inset-0 object-cover w-full h-full opacity-90">
+            <div class="absolute top-1/2 left-1/2 z-20 w-4/5 max-w-4xl text-center text-white -translate-x-1/2 -translate-y-1/2">
+                <h1 class="mb-5 text-4xl font-bold md:text-5xl lg:text-6xl text-shadow-lg">Delicious Artisan Bakery</h1>
+                <p class="mb-8 text-lg md:text-xl text-shadow">Discover our handcrafted cakes and pastries made with love and the finest ingredients</p>
+              
+            </div>
+        </div>
+
+        <!-- Banner 2 -->
+        <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" data-carousel-item>
+            <div class="absolute inset-0 z-10 bg-black bg-opacity-30"></div>
+            <img src="IMG/MAIN BANNER 10.jpg" alt="Fresh Bread" class="absolute inset-0 object-cover w-full h-full opacity-170">
+            <div class="absolute top-1/2 left-1/2 z-20 w-4/5 max-w-4xl text-center text-white -translate-x-1/2 -translate-y-1/2">
+                <h1 class="mb-5 text-4xl font-bold md:text-5xl lg:text-6xl  ">Freshly Baked Daily</h1>
+ <p class="mb-8 text-lg md:text-xl  ">Our Cakes is made with traditional methods and organic flour</p>
+              
+            </div>
+        </div>
+
+        <!-- Banner 3 -->
+        <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" data-carousel-item>
+            <div class="absolute inset-0 z-10 bg-black bg-opacity-30"></div>
+            <img src="IMG/MAIN BANNER 8.jpg" alt="Special Offers" class="absolute inset-0 object-cover w-full h-full opacity-90">
+            <div class="absolute top-1/2 left-1/2 z-20 w-4/5 max-w-4xl text-center text-white -translate-x-1/2 -translate-y-1/2">
+                <h1 class="mb-5 text-4xl font-bold md:text-5xl lg:text-6xl text-shadow-lg">Seasonal Specials</h1>
+                <p class="mb-8 text-lg md:text-xl text-shadow">Try our limited edition treats available only this season</p>
+           
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="absolute top-1/2 left-4 z-30 p-2 text-white bg-black bg-opacity-50 rounded-full -translate-y-1/2 hover:bg-opacity-70 focus:outline-none" id="prev-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button class="absolute top-1/2 right-4 z-30 p-2 text-white bg-black bg-opacity-50 rounded-full -translate-y-1/2 hover:bg-opacity-70 focus:outline-none" id="next-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+
+        <!-- Indicators -->
+        <div class="absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 space-x-2">
+            <button class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 focus:outline-none" data-carousel-indicator></button>
+            <button class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 focus:outline-none" data-carousel-indicator></button>
+            <button class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 focus:outline-none" data-carousel-indicator></button>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('banner-carousel');
+        const items = carousel.querySelectorAll('[data-carousel-item]');
+        const indicators = carousel.querySelectorAll('[data-carousel-indicator]');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        let currentIndex = 0;
+        let intervalId = null;
+        const intervalDuration = 5000; // 5 seconds
+        
+        // Initialize carousel
+        function showItem(index) {
+            items.forEach((item, i) => {
+                item.classList.toggle('opacity-100', i === index);
+                item.classList.toggle('opacity-0', i !== index);
+            });
+            
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('bg-opacity-50', i !== index);
+                indicator.classList.toggle('bg-opacity-100', i === index);
+            });
+        }
+        
+        // Next slide
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % items.length;
+            showItem(currentIndex);
+        }
+        
+        // Previous slide
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            showItem(currentIndex);
+        }
+        
+        // Start auto-rotation
+        function startAutoRotation() {
+            intervalId = setInterval(nextSlide, intervalDuration);
+        }
+        
+        // Stop auto-rotation
+        function stopAutoRotation() {
+            clearInterval(intervalId);
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoRotation();
+            startAutoRotation();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoRotation();
+            startAutoRotation();
+        });
+        
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                showItem(currentIndex);
+                stopAutoRotation();
+                startAutoRotation();
+            });
+        });
+        
+        // Pause on hover
+        carousel.addEventListener('mouseenter', stopAutoRotation);
+        carousel.addEventListener('mouseleave', startAutoRotation);
+        
+        // Initialize
+        showItem(currentIndex);
+        startAutoRotation();
+    });
+</script>
+    
+   <!-- Product Categories Section -->
+<section class="py-12 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                Online Cake Delivery
+            </h2>
+            <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-600">
+                Baked Fresh, Delivered Fresh
+            </p>
+        </div>
+
+        <!-- Category Grid -->
+        <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+            <!-- All Cakes -->
+            <a href="cakes1.html" class="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-t-xl">
+                    <img src="IMG/chocolate 4.jpg" alt="All Cakes" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-medium text-gray-900">All Cakes</h3>
+                </div>
+            </a>
+
+            <!-- Birthday Cakes -->
+            <a href="/products?category=birthday-cakes" class="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-t-xl">
+                    <img src="IMG/cheese cake.jpg" alt="Birthday Cakes" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-medium text-gray-900">Birthday Cakes</h3>
+                </div>
+            </a>
+
+            <!-- Designer Cakes -->
+            <a href="/products?category=designer-cakes" class="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-t-xl">
+                    <img src="IMG/BISCOFF.jpg" alt="Designer Cakes" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-medium text-gray-900">Designer Cakes</h3>
+                </div>
+            </a>
+
+            <!-- Anniversary Cakes -->
+            <a href="/products?category=anniversary-cakes" class="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-t-xl">
+                    <img src="IMG/MANGO.jpg" alt="Anniversary Cakes" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-medium text-gray-900">Anniversary Cakes</h3>
+                </div>
+            </a>
+
+            <!-- Mango Cakes -->
+            <a href="/products?category=mango-cakes" class="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-t-xl">
+                    <img src="IMG/HEART.jpg" alt="Mango Cakes" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-medium text-gray-900">Mango Cakes</h3>
+                </div>
+            </a>
+
+            <!-- Photo Cakes -->
+            <a href="/products?category=photo-cakes" class="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-t-xl">
+                    <img src="IMG/yellow cake.jpg" alt="Photo Cakes" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-medium text-gray-900">Photo Cakes</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+   
+
+<!-- Shop By Occasions & Relations -->
+
+<div class="w-full bg-white py-12 px-4 sm:px-6 lg:px-8">
+  <!-- Heading -->
+  <div class="text-center mb-12 max-w-3xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Shop By Occasions & Relations</h2>
+    <p class="text-lg text-gray-600 mt-3">Surprise Your Loved Ones With Delicious Cakes</p>
+  </div>
+
+  <!-- Cards Row -->
+  <div class="overflow-x-auto pb-4">
+    <div class="flex gap-6 sm:gap-8 px-2 w-max mx-auto">
+      <!-- Birthday Cakes -->
+      <a href="cakes1.html" class="group w-72 flex-shrink-0 text-center overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+        <div class="w-full h-72 overflow-hidden rounded-t-full border-4 border-pink-100 group-hover:border-pink-200 transition-colors duration-300">
+          <img src="IMG/bday girl.jpg" alt="Birthday Cakes"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+        </div>
+        <div class="mt-6">
+          <p class="text-xl font-semibold text-gray-800 group-hover:text-pink-600 transition-colors">Birthday Cakes</p>
+          <p class="text-gray-500 mt-1">Perfect for celebrations</p>
+        </div>
+      </a>
+
+      <!-- Anniversary Cakes -->
+      <a href="/products?category=anniversary" class="group w-72 flex-shrink-0 text-center overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+        <div class="w-full h-72 overflow-hidden rounded-t-full border-4 border-red-100 group-hover:border-red-200 transition-colors duration-300">
+          <img src="IMG/anni model.jpg" alt="Anniversary Cakes"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+        </div>
+        <div class="mt-6">
+          <p class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Anniversary Cakes</p>
+          <p class="text-gray-500 mt-1">Sweeten your special day</p>
+        </div>
+      </a>
+
+      <!-- Cakes for Loved Ones -->
+      <a href="/products?category=for-him" class="group w-72 flex-shrink-0 text-center overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+        <div class="w-full h-72 overflow-hidden rounded-t-full border-4 border-blue-100 group-hover:border-blue-200 transition-colors duration-300">
+          <img src="IMG/special.jpg" alt="Cakes for Loved Ones"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+        </div>
+        <div class="mt-6">
+          <p class="text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">Cakes for Loved Ones</p>
+          <p class="text-gray-500 mt-1">Show you care</p>
+        </div>
+      </a>
+
+      <!-- Cakes for Celebration -->
+      <a href="/products?category=for-her" class="group w-72 flex-shrink-0 text-center overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+        <div class="w-full h-72 overflow-hidden rounded-t-full border-4 border-purple-100 group-hover:border-purple-200 transition-colors duration-300">
+          <img src="IMG/parties.jpg" alt="Cakes for Celebration"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+        </div>
+        <div class="mt-6">
+          <p class="text-xl font-semibold text-gray-800 group-hover:text-purple-600 transition-colors">Cakes for Celebration</p>
+          <p class="text-gray-500 mt-1">For every special moment</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+
+ 
+ <!-- Cakes & Pastries -->
+<section class="py-8 bg-gray-50">
+    <div class="max-w-8xl px-4 mx-auto">
+        <!-- Cakes Section -->
+        <div class="mb-16">
+            <div class="text-center">
+                <h2 class="section-title text-3xl font-bold text-gray-800">Our Signature Cakes</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-3">Handcrafted cakes made with premium ingredients and artistic designs</p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6 mt-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <!-- Cake 1 -->
+                <a href="cakes1.html" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
+                    <div class="overflow-hidden h-60">
+                        <img src="/IMG/BISCOFF.jpg" 
+                             alt="Chocolate Fudge Cake" 
+                             class="object-cover w-full h-full card-image">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold">Chocolate Fudge Cake</h3>
+                        <p class="mt-2 text-gray-600">Rich chocolate layers with creamy fudge</p>
+                        <div class="mt-4">
+                            <span class="text-xl font-bold text-primary">₹2,499</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Cake 2 -->
+                <a href="/product/red-velvet-dream" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
+                    <div class="overflow-hidden h-60">
+                        <img src="IMG/Bday3.jpg" 
+                             alt="Red Velvet Dream" 
+                             class="object-cover w-full h-full card-image">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold">Red Velvet Dream</h3>
+                        <p class="mt-2 text-gray-600">Classic velvet cake with cream cheese frosting</p>
+                        <div class="mt-4">
+                            <span class="text-xl font-bold text-primary">₹2,799</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Cake 3 -->
+                <a href="/product/berry-cheesecake" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
+                    <div class="overflow-hidden h-60">
+                        <img src="IMG/MANGO.jpg" 
+                             alt="Berry Cheesecake" 
+                             class="object-cover w-full h-full card-image">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold">Berry Cheesecake</h3>
+                        <p class="mt-2 text-gray-600">Creamy cheesecake topped with fresh berries</p>
+                        <div class="mt-4">
+                            <span class="text-xl font-bold text-primary">₹2,999</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Cake 4 -->
+                <a href="/product/lemon-meringue" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
+                    <div class="overflow-hidden h-60">
+                        <img src="IMG/ann2.jpg" 
+                             alt="Lemon Meringue" 
+                             class="object-cover w-full h-full card-image">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold">Lemon Meringue</h3>
+                        <p class="mt-2 text-gray-600">Tangy lemon cake with fluffy meringue</p>
+                        <div class="mt-4">
+                            <span class="text-xl font-bold text-primary">₹2,599</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Pastries Section -->
+        <div>
+            <div class="text-center">
+                <h2 class="section-title text-3xl font-bold text-gray-800">Freshly Baked Pastries</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-3">Delightful pastries perfect for any time of day</p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6 mt-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <!-- Pastry 1 -->
+                <a href="/product/butter-croissants" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
+                    <div class="overflow-hidden h-60">
+                        <img src="IMG/pastry6.jpg" 
+                             alt="Croissants" 
+                             class="object-cover w-full h-full card-image">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold">Butter Croissants</h3>
+                        <p class="mt-2 text-gray-600">Flaky, buttery layers of perfection and Love</p>
+                        <div class="mt-4">
+                            <span class="text-xl font-bold text-primary">₹299</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Pastry 2 -->
+                <a href="/product/french-macarons" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
+                    <div class="overflow-hidden h-60">
+                        <img src="IMG/pastry5.jpg" 
+                             alt="Macarons" 
+                             class="object-cover w-full h-full card-image">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold">French Macarons</h3>
+                        <p class="mt-2 text-gray-600">Assorted flavors of delicate macarons</p>
+                        <div class="mt-4">
+                            <span class="text-xl font-bold text-primary">₹1,099/doz</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Pastry 3 -->
+                <a href="/product/cinnamon-rolls" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
+                    <div class="overflow-hidden h-60">
+                        <img src="IMG/pastry.jpg" 
+                             alt="Cinnamon Rolls" 
+                             class="object-cover w-full h-full card-image">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold">Cinnamon Rolls</h3>
+                        <p class="mt-2 text-gray-600">Soft, gooey rolls with cream cheese icing</p>
+                        <div class="mt-4">
+                            <span class="text-xl font-bold text-primary">₹449</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Pastry 4 -->
+                <a href="/product/fresh-fruit-tarts" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
+                    <div class="overflow-hidden h-60">
+                        <img src="IMG/pastry3.jpg" 
+                             alt="Fruit Tarts" 
+                             class="object-cover w-full h-full card-image">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold">Fresh Fruit Tarts</h3>
+                        <p class="mt-2 text-gray-600">Buttery crust with pastry cream and fruits</p>
+                        <div class="mt-4">
+                            <span class="text-xl font-bold text-primary">₹549</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Category Cards Section -->
+<section class="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    <!-- Cakes Card -->
+    <a href="cakes1.html" class="group bg-white rounded-xl shadow-md overflow-hidden flex flex-col sm:flex-row h-80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+      <div class="w-full sm:w-1/2 h-48 sm:h-full overflow-hidden">
+        <img src="/IMG/cakes.jpg" alt="Assortment of delicious cakes including chocolate, vanilla and fruit cakes" 
+             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="p-6 w-full sm:w-1/2 flex flex-col justify-center">
+        <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-primary">Cakes</h3>
+        <p class="text-gray-600 mb-3">Celebrate every moment with our freshly baked cakes, crafted to perfection for every occasion.</p>
+        <ul class="text-gray-700 space-y-1 text-sm">
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Chocolate Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Vanilla Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Fruit Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Red Velvet
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Layer Cakes
+          </li>
+        </ul>
+      </div>
+    </a>
+
+    <!-- Pastries Card -->
+    <a href="pastries.html" class="group bg-white rounded-xl shadow-md overflow-hidden flex flex-col sm:flex-row h-80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+      <div class="w-full sm:w-1/2 h-48 sm:h-full overflow-hidden">
+        <img src="/IMG/pastries.jpg" alt="Variety of pastries including chocolate, fruit tarts and cream rolls" 
+             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="p-6 w-full sm:w-1/2 flex flex-col justify-center">
+        <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-primary">Pastries</h3>
+        <p class="text-gray-600 mb-3">Delicate, delightful, and delicious — our pastries are the perfect bite-sized treats to satisfy your cravings.</p>
+        <ul class="text-gray-700 space-y-1 text-sm">
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Chocolate Pastries
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Strawberry Swirls
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Fruit Tarts
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Cream Rolls
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Mini Pastries
+          </li>
+        </ul>
+      </div>
+    </a>
+
+    <!-- Custom Card -->
+    <a href="custom.html" class="group bg-white rounded-xl shadow-md overflow-hidden flex flex-col sm:flex-row h-80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+      <div class="w-full sm:w-1/2 h-48 sm:h-full overflow-hidden">
+        <img src="/IMG/custom.jpg" alt="Custom designed cakes including photo cakes and themed decorations" 
+             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="p-6 w-full sm:w-1/2 flex flex-col justify-center">
+        <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-primary">Custom Cakes</h3>
+        <p class="text-gray-600 mb-3">Make it personal with custom cakes tailored to your theme, design, and sweet message.</p>
+        <ul class="text-gray-700 space-y-1 text-sm">
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Photo Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Theme Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Cartoon Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Fondant Art
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Message Cakes
+          </li>
+        </ul>
+      </div>
+    </a>
+
+    <!-- Trending Card -->
+    <a href="trending.html" class="group bg-white rounded-xl shadow-md overflow-hidden flex flex-col sm:flex-row h-80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+      <div class="w-full sm:w-1/2 h-48 sm:h-full overflow-hidden">
+        <img src="/IMG/trend.jpg" alt="Trending cake designs including tall cakes and minimalist styles" 
+             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="p-6 w-full sm:w-1/2 flex flex-col justify-center">
+        <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-primary">Trending Now</h3>
+        <p class="text-gray-600 mb-3">Discover the latest cake trends that are taking celebrations by storm with bold flavors and stylish looks.</p>
+        <ul class="text-gray-700 space-y-1 text-sm">
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Tall Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Minimalist Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Pinata Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Pull Me Up Cakes
+          </li>
+          <li class="flex items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+            Viral Designs
+          </li>
+        </ul>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+
+<!--TESTIMONIAL-->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        .delay-1 { animation-delay: 0.5s; }
+        .delay-2 { animation-delay: 1s; }
+        .delay-3 { animation-delay: 1.5s; }
+        .delay-4 { animation-delay: 2s; }
+    </style>
+
+    <section class="relative py-16 overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <!-- Floating cakes and pastries -->
+            <div class="absolute top-1/4 left-10 floating delay-1">
+                <div class="w-16 h-16 bg-pink-200 rounded-full"></div>
+                <div class="w-16 h-8 bg-pink-300 rounded-b-full -mt-4"></div>
+            </div>
+            
+            <div class="absolute top-1/3 right-20 floating delay-2">
+                <div class="w-12 h-12 bg-white rounded-full"></div>
+                <div class="w-12 h-6 bg-pink-100 rounded-b-full -mt-3"></div>
+                <div class="w-3 h-3 bg-pink-300 rounded-full absolute top-2 left-3"></div>
+                <div class="w-3 h-3 bg-pink-300 rounded-full absolute top-2 right-3"></div>
+            </div>
+            
+            <div class="absolute bottom-1/4 left-1/4 floating delay-3">
+                <div class="w-14 h-8 bg-rose-200 rounded-t-full"></div>
+                <div class="w-14 h-14 bg-rose-100 rounded-b-full -mt-2"></div>
+            </div>
+            
+            <div class="absolute top-1/2 right-1/3 floating delay-4">
+                <div class="w-10 h-16 bg-pink-200 rounded-t-full"></div>
+                <div class="w-10 h-10 bg-pink-100 rounded-b-full -mt-2"></div>
+            </div>
+        </div>
+        
+        <!-- Testimonial Content -->
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-rose-800 mb-2">Sweet Words From Our Customers</h2>
+            <p class="text-center text-rose-600 mb-12">What people say about our delicious treats</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-rose-600 font-bold">JD</div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Jane Doe</h4>
+                            <p class="text-sm text-rose-600">Pastry Lover</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"The chocolate croissants are to die for! Flaky, buttery, and just the right amount of chocolate. I order them every weekend!"</p>
+                    <div class="flex text-rose-400">
+                        ★ ★ ★ ★ ★
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-rose-600 font-bold">JS</div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">John Smith</h4>
+                            <p class="text-sm text-rose-600">Cake Enthusiast</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Ordered a birthday cake for my wife and it was perfect! The decoration was beautiful and it tasted even better than it looked."</p>
+                    <div class="flex text-rose-400">
+                        ★ ★ ★ ★ ★
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-rose-600 font-bold">AM</div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Alice Miller</h4>
+                            <p class="text-sm text-rose-600">Regular Customer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"I've tried almost everything in their menu and never been disappointed. The macarons are my absolute favorite!"</p>
+                    <div class="flex text-rose-400">
+                        ★ ★ ★ ★ ★
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Updated Banner Section -->
+<section class="relative w-full h-64 md:h-96 lg:h-[500px] overflow-hidden">
+    <!-- Background Image -->
+    <img 
+        src="/IMG/MAIN BANNER 7.jpg" 
+        alt="Banner Image"
+        class="w-full h-full object-cover object-center"
+    >
+    
+    <!-- Optional Overlay -->
+    <div class="absolute inset-0 bg-black/30"></div>
+    
+    <!-- Content (optional) -->
+    <div class="absolute inset-0 flex items-center justify-center text-center px-4">
+        <h1 class="text-xl sm:text-2xl md:text-4xl font-bold text-white drop-shadow-lg px-4">
+           "Freshly Baked Happiness – Just a Click Away!"
+        </h1>
+    </div>
+</section>
+
+<!-- Updated Footer Section -->
+<footer class="bg-white text-light py-8 sm:py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+            <!-- About Us -->
+            <div class="col-span-2 md:col-span-1">
+                <h3 class="text-primary font-bold text-lg sm:text-xl mb-3 sm:mb-4">Artisan Bakery</h3>
+                <p class="text-black text-sm sm:text-base">Handcrafted with love since 2010. We bake happiness into every product.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-primary font-bold text-lg sm:text-xl mb-3 sm:mb-4">Quick Links</h3>
+                <ul class="space-y-1 sm:space-y-2">
+                    <li><a href="#" class="text-black text-sm sm:text-base hover:text-primary transition-colors">Home</a></li>
+                    <li><a href="#" class="text-black text-sm sm:text-base hover:text-primary transition-colors">Our Menu</a></li>
+                    <li><a href="#" class="text-black text-sm sm:text-base hover:text-primary transition-colors">Special Offers</a></li>
+                    <li><a href="#" class="text-black text-sm sm:text-base hover:text-primary transition-colors">Track Order</a></li>
+                    <li><a href="#" class="text-black text-sm sm:text-base hover:text-primary transition-colors">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-span-2 md:col-span-1">
+                <h3 class="text-primary font-bold text-lg sm:text-xl mb-3 sm:mb-4">Contact Us</h3>
+                <ul class="space-y-1 sm:space-y-2 text-black">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt mt-1 mr-2 sm:mr-3 text-primary text-sm sm:text-base"></i>
+                        <span class="text-sm sm:text-base">123 Bakery Street, Pune</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone-alt mr-2 sm:mr-3 text-primary text-sm sm:text-base"></i>
+                        <span class="text-sm sm:text-base">+91 9876543210</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-2 sm:mr-3 text-primary text-sm sm:text-base"></i>
+                        <span class="text-sm sm:text-base">hello@artisanbakery.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="col-span-2 md:col-span-1">
+                <h3 class="text-primary font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-center md:text-left">Follow Us</h3>
+                <div class="flex justify-center md:justify-start space-x-3 sm:space-x-4">
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f text-sm sm:text-base"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-sm sm:text-base"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary hover:text-white transition-colors">
+                        <i class="fab fa-twitter text-sm sm:text-base"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary hover:text-white transition-colors">
+                        <i class="fab fa-pinterest-p text-sm sm:text-base"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-gray-300 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-black text-xs sm:text-sm">
+            <p>© 2023 Artisan Bakery Delights. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    // Load header content
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            // Initialize header scripts after loading
+            initializeHeaderScripts();
+        })
+        .catch(error => console.error('Error loading header:', error));
+
+    function initializeHeaderScripts() {
+        // ==================== DELIVERY LOCATION ====================
+        const puneDeliveryAreas = [
+            'Koregaon Park', 'Baner', 'Wakad', 'Hinjewadi', 'FC Road', 'Viman Nagar',
+            'Kothrud', 'Aundh', 'Shivaji Nagar', 'Camp', 'Deccan', 'Karve Nagar',
+            'Pune Station', 'Swargate', 'Katraj', 'Kondhwa', 'Bibwewadi', 'Fursungi',
+            'Magarpatta', 'Hadapsar', 'Kharadi', 'Wagholi', 'Chinchwad', 'Pimpri',
+            'Warje', 'Bavdhan', 'Pashan', 'Sus', 'Balewadi', 'Nigdi', 'Akurdi',
+            'Ravet', 'Tathawade', 'Vishrantwadi', 'Yerawada', 'Kalyani Nagar',
+            'Nagar Road', 'Dhanori', 'Lohegaon', 'Mundwa', 'Ghorpadi', 'Wanowrie',
+            'Fatima Nagar', 'Salisbury Park', 'Parvati', 'Dhankawadi', 'Balaji Nagar',
+            'Bhavani Peth', 'Budhwar Peth', 'Kasba Peth', 'Rasta Peth', 'Sadashiv Peth'
+        ];
+
+        const punePincodes = [
+            '411001', '411002', '411003', '411004', '411005', '411006', '411007', '411008', 
+            '411009', '411010', '411011', '411012', '411013', '411014', '411015', '411016'
+        ];
+
+        // Delivery Location DOM elements
+        const modal = document.getElementById('deliveryModal');
+        const deliveryLocationBtn = document.getElementById('deliveryLocationBtn');
+        const mobileDeliveryBtn = document.getElementById('mobileDeliveryBtn');
+        const closeModal = document.getElementById('closeModal');
+        const locationInput = document.getElementById('locationInput');
+        const confirmLocationBtn = document.getElementById('confirmLocation');
+        const useCurrentLocationBtn = document.getElementById('useCurrentLocation');
+        const locationOptions = document.querySelectorAll('.location-option');
+        const selectedLocationSpan = document.getElementById('selectedLocation');
+        const mobileSelectedLocationSpan = document.getElementById('mobileSelectedLocation');
+        const locationError = document.getElementById('locationError');
+        const locationSuccess = document.getElementById('locationSuccess');
+
+        let selectedLocation = '';
+        let isValidLocation = false;
+
+        // Initialize Delivery Location if elements exist
+        if (modal && deliveryLocationBtn) {
+            // ... (keep all the delivery location functions from previous solution)
+            // Open modal, close modal, validate location, etc.
+            // (Include all the delivery location code from the previous solution)
+        }
+
+        // ==================== SEARCH BAR SUGGESTIONS ====================
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const suggestions = document.getElementById('suggestions');
+
+        // Sample product data - replace with your actual products
+        const searchData = [
+            'Chocolate Cake', 'Vanilla Cake', 'Red Velvet Cake', 'Black Forest Cake',
+            'Cheesecake', 'Tiramisu', 'Carrot Cake', 'Lemon Drizzle Cake',
+            'Croissant', 'Danish Pastry', 'Eclair', 'Macarons', 'Fruit Tart',
+            'Sourdough Bread', 'Whole Wheat Bread', 'Baguette', 'Focaccia',
+            'Birthday Cake', 'Wedding Cake', 'Cupcakes', 'Muffins'
+        ];
+
+        // Initialize Search if elements exist
+        if (searchInput && suggestions) {
+            // Show suggestions
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase();
+                suggestions.innerHTML = '';
+                
+                if (query.length > 1) { // Show suggestions after 2 characters
+                    const matches = searchData.filter(item => 
+                        item.toLowerCase().includes(query)
+                    );
+                    
+                    if (matches.length > 0) {
+                        suggestions.classList.remove('hidden');
+                        matches.forEach(match => {
+                            const li = document.createElement('li');
+                            li.className = 'px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors text-sm';
+                            li.textContent = match;
+                            li.addEventListener('click', () => {
+                                searchInput.value = match;
+                                suggestions.classList.add('hidden');
+                                // Redirect to search results page or trigger search
+                                performSearch(match);
+                            });
+                            suggestions.appendChild(li);
+                        });
+                    } else {
+                        suggestions.classList.add('hidden');
+                    }
+                } else {
+                    suggestions.classList.add('hidden');
+                }
+            });
+
+            // Search button click
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        performSearch(query);
+                    }
+                });
+            }
+
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
+                    suggestions.classList.add('hidden');
+                }
+            });
+
+            // Keyboard navigation
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        performSearch(query);
+                    }
+                }
+            });
+        }
+
+        // Function to perform the actual search
+        function performSearch(query) {
+            suggestions.classList.add('hidden');
+            console.log('Searching for:', query); // Replace with actual search logic
+            
+            // In a real implementation, you would:
+            // 1. Redirect to a search results page: 
+            // window.location.href = `/search.html?q=${encodeURIComponent(query)}`;
+            // OR
+            // 2. Make an AJAX request to fetch search results
+        }
+
+        // ==================== MOBILE MENU TOGGLE ====================
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Load saved delivery location if exists
+        const savedLocation = localStorage.getItem('deliveryLocation');
+        if (savedLocation && selectedLocationSpan && mobileSelectedLocationSpan) {
+            selectedLocationSpan.textContent = savedLocation;
+            mobileSelectedLocationSpan.textContent = savedLocation;
+            selectedLocation = savedLocation;
+        }
+    }
+</script>
+
+
+
+
+
+</body>
+</html>

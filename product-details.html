@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truffle Bliss Birthday Cake | Artisan Bakery Delights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#3A0519',
+                    secondary: '#670D2F',
+                    accent: '#A53860',
+                    light: '#FFDBDB',
+                    lighter: '#FFC6C6',
+                    dark: '#333333',
+                    floral: '#A53860',
+                    floweraura: {
+                        primary: '#3A0519',
+                        secondary: '#670D2F',
+                        accent: '#A53860',
+                        text: '#3A0519',
+                        light: '#FFDBDB'
+                    }
+                },
+                boxShadow: {
+                    'nav': '0 2px 5px rgba(0, 0, 0, 0.05)',
+                    'main-nav': '0 2px 15px rgba(0, 0, 0, 0.05)',
+                    'dropdown': '0 15px 30px rgba(0,0,0,0.12)',
+                    'card': '0 4px 10px rgba(0,0,0,0.1)',
+                    'btn': '0 4px 15px rgba(165, 56, 96, 0.3)',
+                    'floral': '0 4px 20px rgba(165, 56, 96, 0.3)',
+                    'floweraura': '0 2px 10px rgba(0,0,0,0.1)'
+                }
+            }
+        }
+    }
+</script>
+
+<style type="text/tailwindcss">
+    @layer utilities {
+        .clip-ellipse {
+            clip-path: ellipse(75% 60% at 50% 35%);
+        }
+        .text-shadow {
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+        .text-shadow-lg {
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        .floral-badge {
+            background: linear-gradient(135deg, #A53860 0%, #670D2F 100%);
+        }
+        .floral-btn {
+            background: linear-gradient(135deg, #A53860 0%, #670D2F 100%);
+            transition: all 0.3s ease;
+        }
+        .floral-btn:hover {
+            background: linear-gradient(135deg, #A53860 0%, #670D2F 100%);
+            box-shadow: 0 4px 20px rgba(165, 56, 96, 0.4);
+        }
+        .floweraura-btn {
+            background: #A53860;
+            transition: all 0.3s ease;
+        }
+        .floweraura-btn:hover {
+            background: #670D2F;
+        }
+        .floweraura-tab-active {
+            border-bottom: 2px solid #A53860;
+            color: #A53860;
+            font-weight: 600;
+        }
+        .floweraura-option-active {
+            border: 1px solid #A53860;
+            background-color: #FFDBDB;
+            color: #A53860;
+        }
+    }
+
+    .image-carousel {
+        scroll-behavior: smooth;
+    }
+    .wishlist-btn.active svg {
+        fill: currentColor;
+        color: #A53860;
+    }
+    .tab-content {
+        transition: opacity 0.3s ease;
+    }
+    .product-image {
+        transition: transform 0.3s ease;
+    }
+    .product-image:hover {
+        transform: scale(1.03);
+    }
+    .quantity-btn:active {
+        transform: scale(0.95);
+    }
+    .floating-cta {
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+    .floweraura-price {
+        color: #A53860;
+    }
+    .floweraura-delivery-badge {
+        background-color: #f0fdf4;
+        color: #16a34a;
+        border: 1px solid #dcfce7;
+    }
+    .floweraura-highlight {
+        background-color: #FFDBDB;
+        border-left: 3px solid #A53860;
+    }
+</style>
+
+</head>
+<body class="bg-gray-50">
+
+ <!-- Header will be loaded here -->
+    <div id="header-container"></div>
+    <!-- Breadcrumb Navigation -->
+    <div class="bg-white py-2 px-4 shadow-sm">
+        <div class="max-w-7xl mx-auto">
+            <nav class="flex text-sm" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                    <li class="inline-flex items-center">
+                        <a href="#" class="text-gray-700 hover:text-floweraura-primary">Home</a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs mx-2"></i>
+                            <a href="#" class="text-gray-700 hover:text-floweraura-primary">Cakes</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs mx-2"></i>
+                            <span class="text-floweraura-primary font-medium">Truffle Bliss Birthday Cake</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Product Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Product Images -->
+            <div class="lg:w-1/2">
+                <!-- Main Image -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-4 flex items-center justify-center h-96">
+                    <img id="mainProductImage" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&h=600&fit=crop" 
+                         alt="Truffle Bliss Birthday Cake" class="w-full h-full object-contain product-image">
+                </div>
+                
+                <!-- Thumbnail Gallery -->
+                <div class="grid grid-cols-4 gap-3">
+                    <div class="cursor-pointer border-2 border-transparent hover:border-floweraura-primary rounded-lg overflow-hidden transition-all">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=150&fit=crop" 
+                             class="w-full h-24 object-cover"
+                             onclick="changeMainImage(this.src, 'Truffle Bliss Birthday Cake - Front View')">
+                    </div>
+                    <div class="cursor-pointer border-2 border-transparent hover:border-floweraura-primary rounded-lg overflow-hidden transition-all">
+                        <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=200&h=150&fit=crop" 
+                             class="w-full h-24 object-cover"
+                             onclick="changeMainImage(this.src, 'Truffle Bliss Birthday Cake - Side View')">
+                    </div>
+                    <div class="cursor-pointer border-2 border-transparent hover:border-floweraura-primary rounded-lg overflow-hidden transition-all">
+                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=200&h=150&fit=crop" 
+                             class="w-full h-24 object-cover"
+                             onclick="changeMainImage(this.src, 'Truffle Bliss Birthday Cake - Top View')">
+                    </div>
+                    <div class="cursor-pointer border-2 border-transparent hover:border-floweraura-primary rounded-lg overflow-hidden transition-all">
+                        <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=200&h=150&fit=crop" 
+                             class="w-full h-24 object-cover"
+                             onclick="changeMainImage(this.src, 'Truffle Bliss Birthday Cake - Slice View')">
+                    </div>
+                </div>
+            </div>
+            
+  <!-- Product Info -->
+<div class="lg:w-1/2">
+    <div class="bg-white rounded-lg shadow-sm p-6 sticky top-4">
+        <!-- Make the content scrollable with max height -->
+        <div class="max-h-[70vh] overflow-y-auto pr-2">
+            <!-- Badge and Share -->
+            <div class="flex justify-between items-start mb-3">
+                <div class="flex items-center">
+                    <span class="bg-floweraura-primary text-white px-2 py-1 rounded text-xs font-medium mr-2">
+                        Best Seller
+                    </span>
+                    <span class="text-xs text-gray-500">500+ Orders</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button class="text-gray-500 hover:text-floweraura-primary text-sm">
+                        <i class="fas fa-share-alt mr-1"></i> Share
+                    </button>
+                    <button id="wishlistBtn" class="text-gray-500 hover:text-floweraura-primary text-sm">
+                        <i class="far fa-heart mr-1"></i> Wishlist
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Product Title -->
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">Truffle Bliss Birthday Cake</h1>
+            
+            <!-- Rating -->
+            <div class="flex items-center mb-4">
+                <div class="flex items-center text-yellow-400 text-sm mr-2">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span class="text-gray-600 ml-1">4.9 (165 Reviews)</span>
+                </div>
+            </div>
+            
+            <!-- Price -->
+            <div class="mb-4">
+                <div class="flex items-end">
+                    <p class="text-3xl font-bold floweraura-price">₹ 695</p>
+                    <p class="text-sm text-gray-500 ml-2 mb-1">Inclusive of all taxes</p>
+                </div>
+                <p class="text-green-600 text-sm mt-1 flex items-center">
+                    <span class="floweraura-delivery-badge px-2 py-1 rounded text-xs mr-2">FREE DELIVERY</span>
+                    Get 10% off on orders above ₹1000
+                </p>
+            </div>
+            
+            <!-- Key Highlights -->
+            <div class="mb-6 p-3 floweraura-highlight">
+                <h3 class="text-md font-semibold text-gray-900 mb-2">Key Highlights</h3>
+                <ul class="text-gray-700 space-y-1 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Rich chocolate truffle cake with dark chocolate ganache</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Velvety chocolate mousse layers</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Topped with premium chocolate shavings</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Serves 8-10 people</span>
+                    </li>
+                </ul>
+            </div>
+            
+          
+            
+            <!-- Weight Selection -->
+            <div class="mb-6">
+                <h3 class="text-md font-semibold text-gray-900 mb-3">Select Weight</h3>
+                <div class="grid grid-cols-3 gap-2">
+                    <button class="border border-gray-300 rounded-md py-2 px-1 text-center text-sm hover:border-floweraura-primary hover:bg-floweraura-light transition-colors">
+                        500g (4-6 People)
+                    </button>
+                    <button class="border border-floweraura-primary bg-floweraura-light text-floweraura-primary rounded-md py-2 px-1 text-center text-sm font-medium floweraura-option-active">
+                        1kg (8-10 People)
+                    </button>
+                    <button class="border border-gray-300 rounded-md py-2 px-1 text-center text-sm hover:border-floweraura-primary hover:bg-floweraura-light transition-colors">
+                        1.5kg (12-15 People)
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Delivery Info -->
+            <div class="mb-6 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                <div class="flex items-start">
+                    <div class="bg-blue-100 p-2 rounded-full mr-3">
+                        <i class="fas fa-truck text-blue-600 text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-1 text-sm">Delivery Information</h4>
+                        <p class="text-sm text-gray-600 mb-1">
+                            <span class="font-medium">Earliest Delivery:</span> Today, In 3 hours
+                        </p>
+                        <p class="text-sm text-gray-600">
+                            <span class="font-medium">Free Delivery</span> on orders above ₹500
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quantity Selector -->
+            <div class="mb-6">
+                <h3 class="text-md font-semibold text-gray-900 mb-3">Quantity</h3>
+                <div class="flex items-center w-32">
+                    <button class="quantity-btn border border-gray-300 rounded-l-md px-3 py-2 text-gray-600 hover:bg-gray-100">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="border-t border-b border-gray-300 px-4 py-2 text-gray-900 font-medium w-full text-center">1</span>
+                    <button class="quantity-btn border border-gray-300 rounded-r-md px-3 py-2 text-gray-600 hover:bg-gray-100">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Buttons (outside scrollable area to keep them fixed) -->
+        <div class="flex flex-col sm:flex-row gap-3 mt-4">
+            <button class="floweraura-btn flex-1 text-white font-medium py-3 px-6 rounded-md transition-colors">
+                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+            </button>
+            <button class="flex-1 border border-floweraura-primary text-floweraura-primary hover:bg-floweraura-light font-medium py-3 px-6 rounded-md transition-colors">
+                Buy Now
+            </button>
+        </div>
+    </div>
+</div>
+        </div>
+        
+        <!-- Floating CTA (Mobile) -->
+        <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg p-3 z-10">
+            <div class="flex justify-between items-center max-w-7xl mx-auto">
+                <div>
+                    <p class="text-lg font-bold floweraura-price">₹ 695</p>
+                </div>
+                <button class="floweraura-btn text-white font-medium py-2 px-6 rounded-md">
+                    <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+        
+        <!-- Product Details Tabs -->
+        <div class="mt-8 bg-white rounded-lg shadow-sm overflow-hidden">
+            <div class="border-b border-gray-200">
+                <nav class="flex -mb-px overflow-x-auto">
+                    <button onclick="openTab('details')" class="tab-btn whitespace-nowrap py-4 px-6 text-center border-b-2 font-medium text-sm floweraura-tab-active">
+                        Product Details
+                    </button>
+                    <button onclick="openTab('ingredients')" class="tab-btn whitespace-nowrap py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Ingredients
+                    </button>
+                    <button onclick="openTab('delivery')" class="tab-btn whitespace-nowrap py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Delivery Info
+                    </button>
+                    <button onclick="openTab('reviews')" class="tab-btn whitespace-nowrap py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Reviews (165)
+                    </button>
+                </nav>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="p-6">
+                <!-- Product Details -->
+                <div id="details" class="tab-content">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">About Truffle Bliss Birthday Cake</h3>
+                    <div class="prose max-w-none text-gray-700">
+                        <p class="mb-4">
+                            Indulge in the ultimate chocolate experience with our Truffle Bliss Birthday Cake. This decadent masterpiece 
+                            features multiple layers of rich chocolate sponge, each separated by a generous helping of dark chocolate 
+                            ganache and velvety chocolate mousse. The exterior is coated in smooth chocolate frosting and adorned with 
+                            delicate chocolate shavings for an elegant finish.
+                        </p>
+                        <p class="mb-4">
+                            Every bite delivers an explosion of chocolate flavors with the perfect balance of sweetness, making it ideal 
+                            for true chocolate connoisseurs. The cake maintains its moist texture while providing the luxurious feel of 
+                            premium chocolate in every layer.
+                        </p>
+                        
+                        <h4 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Occasions</h4>
+                        <p class="mb-4">
+                            Perfect for birthdays, anniversaries, celebrations, or just when you need a chocolate fix. This cake is sure 
+                            to impress at any gathering.
+                        </p>
+                        
+                        <h4 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Specifications</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-gray-900 mb-2">Cake Details</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li><strong>Flavor:</strong> Chocolate Truffle</li>
+                                    <li><strong>Shape:</strong> Round</li>
+                                    <li><strong>Weight:</strong> 1 kg (serves 8-10 people)</li>
+                                    <li><strong>Layers:</strong> 3 layers</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-gray-900 mb-2">Storage & Care</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li><strong>Storage:</strong> Refrigerate (0-5°C)</li>
+                                    <li><strong>Shelf Life:</strong> 2 days</li>
+                                    <li><strong>Best Served:</strong> Room temperature</li>
+                                    <li><strong>Preparation:</strong> 3-4 hours</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ingredients -->
+                <div id="ingredients" class="tab-content hidden">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Ingredients</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Cake Base</h4>
+                            <ul class="text-gray-700 space-y-2">
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Premium dark chocolate</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>All-purpose flour</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Fresh eggs</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Unsalted butter</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Pure vanilla extract</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Baking powder</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Truffle & Frosting</h4>
+                            <ul class="text-gray-700 space-y-2">
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Dark chocolate ganache</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Heavy cream</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Chocolate mousse</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Cocoa powder</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Chocolate shavings</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Powdered sugar</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-100">
+                        <h4 class="font-medium text-yellow-800 mb-2 flex items-center">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>Allergen Information
+                        </h4>
+                        <p class="text-yellow-700 text-sm">
+                            Contains: Eggs, Dairy (Milk), Gluten (Wheat). May contain traces of nuts. 
+                            Please inform us of any allergies before ordering.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Delivery Info -->
+                <div id="delivery" class="tab-content hidden">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Delivery Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Delivery Options</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-green-100 p-2 rounded-full mr-3">
+                                        <i class="fas fa-shipping-fast text-green-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-medium text-gray-900">Express Delivery</h5>
+                                        <p class="text-gray-600 text-sm">Same day delivery in 3-4 hours</p>
+                                        <p class="text-green-600 text-sm font-medium">FREE on orders above ₹500</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                        <i class="fas fa-clock text-blue-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-medium text-gray-900">Scheduled Delivery</h5>
+                                        <p class="text-gray-600 text-sm">Choose your preferred date & time</p>
+                                        <p class="text-blue-600 text-sm font-medium">Available 24/7</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Delivery Areas</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-gray-700">Mumbai</span>
+                                    <span class="text-green-600 text-sm">Available</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-gray-700">Delhi NCR</span>
+                                    <span class="text-green-600 text-sm">Available</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-gray-700">Bangalore</span>
+                                    <span class="text-green-600 text-sm">Available</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-gray-700">Pune</span>
+                                    <span class="text-green-600 text-sm">Available</span>
+                                </div>
+                            </div>
+                            <button class="mt-3 text-floweraura-primary text-sm hover:underline">
+                                Check delivery in your area
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reviews -->
+                <div id="reviews" class="tab-content hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-900">Customer Reviews</h3>
+                        <button class="floweraura-btn text-white px-4 py-2 rounded-md text-sm">
+                            Write a Review
+                        </button>
+                    </div>
+                    
+                    <!-- Rating Summary -->
+                    <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                        <div class="flex items-center justify-between">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-gray-900">4.9</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <div class="flex text-yellow-400">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-600 mt-1">165 Reviews</div>
+                            </div>
+                            <div class="flex-1 ml-8">
+                                <div class="space-y-2">
+                                    <div class="flex items-center">
+                                        <span class="text-sm text-gray-600 w-8">5★</span>
+                                        <div class="flex-1 bg-gray-200 rounded-full h-2 mx-3">
+                                            <div class="bg-yellow-400 h-2 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600">140</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-sm text-gray-600 w-8">4★</span>
+                                        <div class="flex-1 bg-gray-200 rounded-full h-2 mx-3">
+                                            <div class="bg-yellow-400 h-2 rounded-full" style="width: 12%"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600">20</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-sm text-gray-600 w-8">3★</span>
+                                        <div class="flex-1 bg-gray-200 rounded-full h-2 mx-3">
+                                            <div class="bg-yellow-400 h-2 rounded-full" style="width: 3%"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600">5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Individual Reviews -->
+                    <div class="space-y-6">
+                        <div class="border-b border-gray-200 pb-6">
+                            <div class="flex items-start">
+                                <div class="bg-floweraura-primary text-white w-10 h-10 rounded-full flex items-center justify-center font-medium">
+                                    P
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <div class="flex items-center mb-1">
+                                        <h4 class="font-medium text-gray-900">Priya Sharma</h4>
+                                        <div class="flex text-yellow-400 text-sm ml-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-2">Ordered for my daughter's birthday</p>
+                                    <p class="text-gray-700">
+                                        Absolutely delicious! The chocolate was rich and not too sweet. Everyone at the party loved it. 
+                                        The delivery was on time and the cake looked exactly like the picture. Highly recommended!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-b border-gray-200 pb-6">
+                            <div class="flex items-start">
+                                <div class="bg-floweraura-primary text-white w-10 h-10 rounded-full flex items-center justify-center font-medium">
+                                    R
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <div class="flex items-center mb-1">
+                                        <h4 class="font-medium text-gray-900">Raj Kumar</h4>
+                                        <div class="flex text-yellow-400 text-sm ml-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-2">Anniversary celebration</p>
+                                    <p class="text-gray-700">
+                                        Perfect cake for our anniversary! The truffle layers were amazing and the presentation was beautiful. 
+                                        Will definitely order again for future celebrations.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related Products -->
+        <div class="mt-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">You May Also Like</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300&h=200&fit=crop" 
+                         alt="Red Velvet Cake" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900 mb-2">Red Velvet Delight</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(89)</span>
+                        </div>
+                        <p class="text-lg font-bold floweraura-price">₹ 625</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=300&h=200&fit=crop" 
+                         alt="Vanilla Strawberry Cake" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900 mb-2">Vanilla Strawberry</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(76)</span>
+                        </div>
+                        <p class="text-lg font-bold floweraura-price">₹ 580</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1621303837174-89787a4d4729?w=300&h=200&fit=crop" 
+                         alt="Black Forest Cake" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900 mb-2">Black Forest Special</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(124)</span>
+                        </div>
+                        <p class="text-lg font-bold floweraura-price">₹ 720</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=300&h=200&fit=crop" 
+                         alt="Butterscotch Cake" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900 mb-2">Butterscotch Bliss</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(67)</span>
+                        </div>
+                        <p class="text-lg font-bold floweraura-price">₹ 650</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Artisan Bakery</h3>
+                    <p class="text-gray-300 text-sm">
+                        Crafting delicious moments with premium quality cakes and baked goods since 2015.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Track Order</a></li>
+                        <li><a href="#" class="hover:text-white">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Categories</h4>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li><a href="#" class="hover:text-white">Birthday Cakes</a></li>
+                        <li><a href="#" class="hover:text-white">Anniversary Cakes</a></li>
+                        <li><a href="#" class="hover:text-white">Custom Cakes</a></li>
+                        <li><a href="#" class="hover:text-white">Cupcakes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="text-gray-300 text-sm space-y-2">
+                        <p><i class="fas fa-phone mr-2"></i>+91 98765 43210</p>
+                        <p><i class="fas fa-envelope mr-2"></i>info@artisanbakery.com</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" class="text-gray-300 hover:text-white">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-white">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-white">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2024 Artisan Bakery Delights. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Image Gallery
+        function changeMainImage(src, alt) {
+            const mainImg = document.getElementById('mainProductImage');
+            mainImg.src = src.replace('200&h=150', '800&h=600');
+            mainImg.alt = alt;
+        }
+        
+        // Tabs
+        function openTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            tabBtns.forEach(btn => {
+                btn.classList.remove('floweraura-tab-active');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            document.getElementById(tabName).classList.remove('hidden');
+            event.target.classList.add('floweraura-tab-active');
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+        }
+        
+        // Wishlist Toggle
+        document.getElementById('wishlistBtn').addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                this.classList.add('active');
+                this.innerHTML = '<i class="fas fa-heart mr-1"></i> Wishlisted';
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                this.classList.remove('active');
+                this.innerHTML = '<i class="far fa-heart mr-1"></i> Wishlist';
+            }
+        });
+        
+        // Quantity Controls
+        document.querySelectorAll('.quantity-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const quantitySpan = this.parentElement.querySelector('span');
+                let quantity = parseInt(quantitySpan.textContent);
+                
+                if (this.querySelector('.fa-plus')) {
+                    quantity++;
+                } else if (this.querySelector('.fa-minus') && quantity > 1) {
+                    quantity--;
+                }
+                
+                quantitySpan.textContent = quantity;
+            });
+        });
+        
+        // Weight and Occasion Selection
+        document.querySelectorAll('[class*="grid"] button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const siblings = this.parentElement.querySelectorAll('button');
+                siblings.forEach(sibling => {
+                    sibling.classList.remove('floweraura-option-active');
+                    sibling.classList.add('border-gray-300');
+                });
+                
+                this.classList.add('floweraura-option-active');
+                this.classList.remove('border-gray-300');
+            });
+        });
+    </script>
+
+
+
+<script>
+    // Load header content
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            // Initialize header scripts after loading
+            initializeHeaderScripts();
+        })
+        .catch(error => console.error('Error loading header:', error));
+
+    function initializeHeaderScripts() {
+        // ==================== DELIVERY LOCATION ====================
+        const puneDeliveryAreas = [
+            'Koregaon Park', 'Baner', 'Wakad', 'Hinjewadi', 'FC Road', 'Viman Nagar',
+            'Kothrud', 'Aundh', 'Shivaji Nagar', 'Camp', 'Deccan', 'Karve Nagar',
+            'Pune Station', 'Swargate', 'Katraj', 'Kondhwa', 'Bibwewadi', 'Fursungi',
+            'Magarpatta', 'Hadapsar', 'Kharadi', 'Wagholi', 'Chinchwad', 'Pimpri',
+            'Warje', 'Bavdhan', 'Pashan', 'Sus', 'Balewadi', 'Nigdi', 'Akurdi',
+            'Ravet', 'Tathawade', 'Vishrantwadi', 'Yerawada', 'Kalyani Nagar',
+            'Nagar Road', 'Dhanori', 'Lohegaon', 'Mundwa', 'Ghorpadi', 'Wanowrie',
+            'Fatima Nagar', 'Salisbury Park', 'Parvati', 'Dhankawadi', 'Balaji Nagar',
+            'Bhavani Peth', 'Budhwar Peth', 'Kasba Peth', 'Rasta Peth', 'Sadashiv Peth'
+        ];
+
+        const punePincodes = [
+            '411001', '411002', '411003', '411004', '411005', '411006', '411007', '411008', 
+            '411009', '411010', '411011', '411012', '411013', '411014', '411015', '411016'
+        ];
+
+        // Delivery Location DOM elements
+        const modal = document.getElementById('deliveryModal');
+        const deliveryLocationBtn = document.getElementById('deliveryLocationBtn');
+        const mobileDeliveryBtn = document.getElementById('mobileDeliveryBtn');
+        const closeModal = document.getElementById('closeModal');
+        const locationInput = document.getElementById('locationInput');
+        const confirmLocationBtn = document.getElementById('confirmLocation');
+        const useCurrentLocationBtn = document.getElementById('useCurrentLocation');
+        const locationOptions = document.querySelectorAll('.location-option');
+        const selectedLocationSpan = document.getElementById('selectedLocation');
+        const mobileSelectedLocationSpan = document.getElementById('mobileSelectedLocation');
+        const locationError = document.getElementById('locationError');
+        const locationSuccess = document.getElementById('locationSuccess');
+
+        let selectedLocation = '';
+        let isValidLocation = false;
+
+        // Initialize Delivery Location if elements exist
+        if (modal && deliveryLocationBtn) {
+            // ... (keep all the delivery location functions from previous solution)
+            // Open modal, close modal, validate location, etc.
+            // (Include all the delivery location code from the previous solution)
+        }
+
+        // ==================== SEARCH BAR SUGGESTIONS ====================
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const suggestions = document.getElementById('suggestions');
+
+        // Sample product data - replace with your actual products
+        const searchData = [
+            'Chocolate Cake', 'Vanilla Cake', 'Red Velvet Cake', 'Black Forest Cake',
+            'Cheesecake', 'Tiramisu', 'Carrot Cake', 'Lemon Drizzle Cake',
+            'Croissant', 'Danish Pastry', 'Eclair', 'Macarons', 'Fruit Tart',
+            'Sourdough Bread', 'Whole Wheat Bread', 'Baguette', 'Focaccia',
+            'Birthday Cake', 'Wedding Cake', 'Cupcakes', 'Muffins'
+        ];
+
+        // Initialize Search if elements exist
+        if (searchInput && suggestions) {
+            // Show suggestions
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase();
+                suggestions.innerHTML = '';
+                
+                if (query.length > 1) { // Show suggestions after 2 characters
+                    const matches = searchData.filter(item => 
+                        item.toLowerCase().includes(query)
+                    );
+                    
+                    if (matches.length > 0) {
+                        suggestions.classList.remove('hidden');
+                        matches.forEach(match => {
+                            const li = document.createElement('li');
+                            li.className = 'px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors text-sm';
+                            li.textContent = match;
+                            li.addEventListener('click', () => {
+                                searchInput.value = match;
+                                suggestions.classList.add('hidden');
+                                // Redirect to search results page or trigger search
+                                performSearch(match);
+                            });
+                            suggestions.appendChild(li);
+                        });
+                    } else {
+                        suggestions.classList.add('hidden');
+                    }
+                } else {
+                    suggestions.classList.add('hidden');
+                }
+            });
+
+            // Search button click
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        performSearch(query);
+                    }
+                });
+            }
+
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
+                    suggestions.classList.add('hidden');
+                }
+            });
+
+            // Keyboard navigation
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        performSearch(query);
+                    }
+                }
+            });
+        }
+
+        // Function to perform the actual search
+        function performSearch(query) {
+            suggestions.classList.add('hidden');
+            console.log('Searching for:', query); // Replace with actual search logic
+            
+            // In a real implementation, you would:
+            // 1. Redirect to a search results page: 
+            // window.location.href = `/search.html?q=${encodeURIComponent(query)}`;
+            // OR
+            // 2. Make an AJAX request to fetch search results
+        }
+
+        // ==================== MOBILE MENU TOGGLE ====================
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Load saved delivery location if exists
+        const savedLocation = localStorage.getItem('deliveryLocation');
+        if (savedLocation && selectedLocationSpan && mobileSelectedLocationSpan) {
+            selectedLocationSpan.textContent = savedLocation;
+            mobileSelectedLocationSpan.textContent = savedLocation;
+            selectedLocation = savedLocation;
+        }
+    }
+</script>
+
+
+</body>
+</html>
