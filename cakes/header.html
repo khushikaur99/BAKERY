@@ -1,0 +1,506 @@
+<!-- First Navbar (Top) -->
+<nav class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 bg-white shadow-nav md:px-8">
+  <!-- Logo -->
+  <div class="transition-transform duration-300 hover:scale-105">
+    <img src="/IMG/LOGO.jpg" alt="Bakery Logo" class="h-20">
+  </div>
+
+  <!-- Search Bar -->
+  <div class="relative hidden w-2/5 mx-5 md:block">
+    <div class="flex">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search for cakes, pastries..." 
+        class="w-full px-5 py-2 text-sm border border-r-0 border-black rounded-l-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+      >
+      <button id="searchButton" class="px-5 bg-gradient-to-br from-primary to-secondary text-white rounded-r-full transition-all duration-300 hover:bg-gradient-to-bl">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <ul id="suggestions" class="absolute hidden w-full mt-1 overflow-y-auto bg-white border border-black rounded-lg max-h-52 z-40"></ul>
+  </div>
+
+
+  
+  <!-- Deliver To Section (Desktop) -->
+  <div class="hidden md:flex items-center space-x-2">
+    <i class="fas fa-map-marker-alt text-primary"></i>
+    <div class="flex flex-col">
+      <span class="text-lg text-gray-500">Deliver to</span>
+      <button id="deliveryLocationBtn" class="text-sm font-medium text-gray-800 hover:text-primary transition-colors duration-300 flex items-center">
+        <span id="selectedLocation">Select Location</span>
+        <i class="fas fa-chevron-down ml-1 text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Delivery Location Modal -->
+  <div id="deliveryModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4 transform transition-all duration-300 scale-95">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold text-gray-800">Choose Delivery Location</h3>
+        <button id="closeModal" class="text-gray-500 hover:text-gray-700 transition-colors">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      
+      <!-- Location Input -->
+      <div class="mb-4">
+        <div class="relative">
+          <i class="fas fa-map-marker-alt absolute left-3 top-3 text-gray-400"></i>
+          <input 
+            type="text" 
+            id="locationInput" 
+            placeholder="Enter your area, city or pincode"
+            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+          >
+          <button id="useCurrentLocation" class="absolute right-3 top-3 text-primary hover:text-secondary transition-colors">
+            <i class="fas fa-crosshairs"></i>
+          </button>
+        </div>
+        <div id="locationError" class="text-red-500 text-sm mt-1 hidden"></div>
+        <div id="locationSuccess" class="text-green-500 text-sm mt-1 hidden"></div>
+      </div>
+
+      <!-- Popular Areas -->
+      <div class="mb-4">
+        <h4 class="text-sm font-medium text-gray-700 mb-2">Popular Areas in Pune</h4>
+        <div class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
+          <button class="location-option text-left p-2 rounded-lg hover:bg-gray-100 transition-colors text-sm">
+            <i class="fas fa-map-pin text-primary mr-2"></i>Koregaon Park
+          </button>
+          <button class="location-option text-left p-2 rounded-lg hover:bg-gray-100 transition-colors text-sm">
+            <i class="fas fa-map-pin text-primary mr-2"></i>Baner
+          </button>
+          <button class="location-option text-left p-2 rounded-lg hover:bg-gray-100 transition-colors text-sm">
+            <i class="fas fa-map-pin text-primary mr-2"></i>Wakad
+          </button>
+          <button class="location-option text-left p-2 rounded-lg hover:bg-gray-100 transition-colors text-sm">
+            <i class="fas fa-map-pin text-primary mr-2"></i>Hinjewadi
+          </button>
+          <button class="location-option text-left p-2 rounded-lg hover:bg-gray-100 transition-colors text-sm">
+            <i class="fas fa-map-pin text-primary mr-2"></i>FC Road
+          </button>
+          <button class="location-option text-left p-2 rounded-lg hover:bg-gray-100 transition-colors text-sm">
+            <i class="fas fa-map-pin text-primary mr-2"></i>Viman Nagar
+          </button>
+        </div>
+      </div>
+
+      <!-- Confirm Button -->
+      <button id="confirmLocation" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-lg font-medium hover:from-secondary hover:to-primary transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+        Confirm Location
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Location Bar -->
+  <div class="md:hidden bg-gray-50 px-4 py-2 border-b">
+    <button id="mobileDeliveryBtn" class="flex items-center space-x-2 text-sm">
+      <i class="fas fa-map-marker-alt text-primary"></i>
+      <span class="text-gray-600">Deliver to:</span>
+      <span id="mobileSelectedLocation" class="font-medium text-gray-800">Select Location</span>
+      <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+    </button>
+  </div>
+  
+  <!-- Top Nav Icons -->
+  <div class="flex items-center space-x-4 sm:space-x-6">
+    <a href="../login.html" class="flex flex-col items-center text-gray-700 transition-all duration-300 hover:text-primary hover:-translate-y-0.5">
+      <i class="text-lg fa-solid fa-user"></i>
+      <span class="text-xs mt-0.5">Account</span>
+    </a>
+    
+  <!-- In your header.html, find these sections and update them: -->
+
+<!-- Wishlist Icon with Badge -->
+<a href="../wishlist.html" class="relative flex flex-col items-center text-gray-700 transition-all duration-300 hover:text-primary hover:-translate-y-0.5">
+    <i class="text-lg fa-solid fa-heart"></i>
+    <span class="text-xs mt-0.5">Wishlist</span>
+    <span id="wishlist-count" class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+</a>
+
+<!-- Cart Icon with Badge -->
+<a href="../cart.html" class="relative flex flex-col items-center text-gray-700 transition-all duration-300 hover:text-primary hover:-translate-y-0.5">
+    <i class="text-lg fa-solid fa-cart-shopping"></i>
+    <span class="text-xs mt-0.5">Cart</span>
+    <span id="cart-count" class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+</a>
+
+        </nav>
+    </div>
+</header>
+
+<script type="module">
+    import { updateCartCount } from './cart.js';
+    // Update cart count when header loads
+    updateCartCount();
+</script>
+  </div>
+</nav>
+
+<!-- Second Navbar (Main) -->
+<nav class="sticky top-16 z-40 px-4 py-3 bg-white shadow-main-nav border-t border-gray-100 md:px-8">
+  <div class="flex items-center justify-center max-w-6xl mx-auto">
+    <!-- Mobile Menu Button -->
+    <button id="mobileMenuButton" class="block p-3 mr-4 text-gray-700 transition-colors duration-300 md:hidden hover:text-primary">
+      <i class="text-xl fa-solid fa-bars"></i>
+    </button>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50">
+      <ul class="py-2">
+
+             <li class="border-b border-gray-100">
+          <a href="../index.html" class="block px-4 py-3 font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
+            <i class="mr-2 fa-solid fa-birthday-cake"></i>Home
+          </a>
+        </li>
+        <li class="border-b border-gray-100">
+          <a href="cakes.html" class="block px-4 py-3 font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
+            <i class="mr-2 fa-solid fa-birthday-cake"></i>Cakes
+          </a>
+        </li>
+        <li class="border-b border-gray-100">
+          <a href="#" class="block px-4 py-3 font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
+            <i class="mr-2 fa-solid fa-cookie"></i>Pastries
+          </a>
+        </li>
+        <li class="border-b border-gray-100">
+          <a href="#" class="block px-4 py-3 font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
+            <i class="mr-2 fa-solid fa-truck"></i>Track Order
+          </a>
+        </li>
+        <li class="border-b border-gray-100">
+          <a href="../contact.html" class="block px-4 py-3 font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
+            <i class="mr-2 fa-solid fa-phone"></i>Contact Us
+          </a>
+        </li>
+        <li>
+          <a href="../about.html" class="block px-4 py-3 font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
+            <i class="mr-2 fa-solid fa-info-circle"></i>About Us
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+   <!-- Main Navigation Links -->
+<ul class="hidden md:flex">
+  <li class="mx-2">
+    <a href="../index.html" class="block px-4 py-3 text-lg font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
+      <i class="mr-2 mt-2 fa-solid fa-house"></i>Home
+    </a>
+  </li>
+
+  <!-- Cakes Dropdown -->
+  <li class="relative mx-2 group">
+    <a href="/cakes/Allcakes.html" class="flex items-center px-3 py-4 text-lg font-medium text-gray-700 transition-colors duration-300 group-hover:text-primary">
+      <i class="mr-2 fa-solid fa-birthday-cake"></i> 
+      Cakes 
+      <i class="ml-1 text-sm fa-solid fa-chevron-down transition-transform duration-300 group-hover:rotate-180"></i>
+    </a>
+    <ul class="absolute left-1/2 transform -translate-x-1/2 translate-y-2 w-[780px] bg-white shadow-dropdown rounded-lg opacity-0 invisible transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 p-4 flex space-x-9">
+      <div class="w-1/4">
+        <li class="flex items-center px-4 py-2 mb-2 font-semibold text-primary text-base">
+          <i class="mr-2 fa-solid fa-utensils"></i> By Type
+        </li>
+        <li><a href="/cakes/Allcakes.html" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">All Cakes</a></li>
+        <li><a href="/cakes/choco.html" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Chocolate Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Vanilla Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Cheesecakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Red Velvet</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Fruit Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Mango Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Butterscotch Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Black Forest Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Pineapple Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Strawberry Cakes</a></li>
+      </div>
+      
+      <div class="w-1/4">
+        <li class="flex items-center px-4 py-2 mb-2 font-semibold text-primary text-base">
+          <i class="mr-2 fa-solid fa-calendar-alt"></i> By Occasion
+        </li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Birthday Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Anniversary Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Wedding Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Graduation Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Baby Shower Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Engagement Cake</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Retirement Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Farewell Cakes</a></li>
+      </div>
+      
+      <div class="w-1/4">
+        <li class="flex items-center px-4 py-2 mb-2 font-semibold text-primary text-base">
+          <i class="mr-2 fa-solid fa-child"></i> Kids Cakes
+        </li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Barbie Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Car Theme Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Cartoon Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Spiderman Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Superhero Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Cricket Cakes</a></li>
+      </div>
+    
+      <div class="w-1/4">
+        <li class="flex items-center px-4 py-2 mb-2 font-semibold text-primary text-base">
+          <i class="mr-2 fa-solid fa-star"></i> Specialty
+        </li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Photo Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Bento Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Desserts</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Heart Shaped Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Pull Me Up Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Pinata Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Bomb Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Fondant Cakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Multi Tier Cakes</a></li>
+      </div>
+    </ul>
+  </li>
+  
+  <!-- Pastries Dropdown -->
+  <li class="relative mx-2 group">
+    <a href="#" class="flex items-center px-3 py-4 text-lg font-medium text-gray-700 transition-colors duration-300 group-hover:text-primary">
+      <i class="mr-2 fa-solid fa-cookie"></i> 
+      Pastries 
+      <i class="ml-1 text-sm fa-solid fa-chevron-down transition-transform duration-300 group-hover:rotate-180"></i>
+    </a>
+    <ul class="absolute left-1/2 transform -translate-x-1/2 translate-y-2 w-[900px] bg-white shadow-dropdown rounded-lg opacity-0 invisible transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 p-4 flex space-x-6">
+      <div class="w-1/3">
+        <li class="flex items-center px-4 py-2 mb-2 font-semibold text-primary text-base">
+          <i class="mr-2 fa-solid fa-cookie-bite"></i> By Type
+        </li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Cupcakes</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Muffins</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Donuts</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Macarons</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Croissants</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Danish Pastries</a></li>
+      </div>
+      <div class="w-1/3">
+        <li class="flex items-center px-4 py-2 mb-2 font-semibold text-primary text-base">
+          <i class="mr-2 fa-solid fa-ice-cream"></i> By Flavours
+        </li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Chocolate</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Vanilla</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Strawberry</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Blueberry</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Lemon</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Matcha</a></li>
+      </div>
+      <div class="w-1/3">
+        <li class="flex items-center px-4 py-2 mb-2 font-semibold text-primary text-base">
+          <i class="mr-2 fa-solid fa-heart"></i> Specialty
+        </li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Gluten-Free</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Sugar-Free</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Vegan</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Keto-Friendly</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Seasonal Specials</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 text-base transition-colors duration-200 hover:text-primary hover:pl-5 hover:border-l-2 border-primary">Mini Pastry Boxes</a></li>
+      </div>
+    </ul>
+  </li>
+  
+  <!-- Other Menu Items -->
+  <li class="mx-2">
+    <a href="#" class="flex items-center px-3 py-4 text-lg font-medium text-gray-700 transition-colors duration-300 hover:text-primary">
+      <i class="mr-2 fa-solid fa-truck"></i> Track Order
+    </a>
+  </li>
+  <li class="mx-2">
+    <a href="../contact.html" class="flex items-center px-3 py-4 text-lg font-medium text-gray-700 transition-colors duration-300 hover:text-primary">
+      <i class="mr-2 fa-solid fa-phone"></i> Contact Us
+    </a>
+  </li>
+  <li class="mx-2">
+    <a href="../about.html" class="flex items-center px-3 py-4 text-lg font-medium text-gray-700 transition-colors duration-300 hover:text-primary">
+      <i class="mr-2 fa-solid fa-info-circle"></i> About Us
+    </a>
+  </li>
+</ul>
+
+
+
+<script>
+// Delivery Location Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Delivery areas and pincodes
+    const puneDeliveryAreas = [
+        'Koregaon Park', 'Baner', 'Wakad', 'Hinjewadi', 'FC Road', 'Viman Nagar',
+        'Kothrud', 'Aundh', 'Shivaji Nagar', 'Camp', 'Deccan', 'Karve Nagar',
+        'Pune Station', 'Swargate', 'Katraj', 'Kondhwa', 'Bibwewadi', 'Fursungi',
+        'Magarpatta', 'Hadapsar', 'Kharadi', 'Wagholi', 'Chinchwad', 'Pimpri',
+        'Warje', 'Bavdhan', 'Pashan', 'Sus', 'Balewadi', 'Nigdi', 'Akurdi',
+        'Ravet', 'Tathawade', 'Vishrantwadi', 'Yerawada', 'Kalyani Nagar',
+        'Nagar Road', 'Dhanori', 'Lohegaon', 'Mundwa', 'Ghorpadi', 'Wanowrie',
+        'Fatima Nagar', 'Salisbury Park', 'Parvati', 'Dhankawadi', 'Balaji Nagar',
+        'Bhavani Peth', 'Budhwar Peth', 'Kasba Peth', 'Rasta Peth', 'Sadashiv Peth'
+    ];
+
+    const punePincodes = [
+        '411001', '411002', '411003', '411004', '411005', '411006', '411007', '411008', 
+        '411009', '411010', '411011', '411012', '411013', '411014', '411015', '411016'
+    ];
+
+    // DOM elements
+    const modal = document.getElementById('deliveryModal');
+    const deliveryLocationBtn = document.getElementById('deliveryLocationBtn');
+    const mobileDeliveryBtn = document.getElementById('mobileDeliveryBtn');
+    const closeModal = document.getElementById('closeModal');
+    const locationInput = document.getElementById('locationInput');
+    const confirmLocationBtn = document.getElementById('confirmLocation');
+    const useCurrentLocationBtn = document.getElementById('useCurrentLocation');
+    const locationOptions = document.querySelectorAll('.location-option');
+    const selectedLocationSpan = document.getElementById('selectedLocation');
+    const mobileSelectedLocationSpan = document.getElementById('mobileSelectedLocation');
+    const locationError = document.getElementById('locationError');
+    const locationSuccess = document.getElementById('locationSuccess');
+
+    let selectedLocation = '';
+    let isValidLocation = false;
+
+    // Open modal
+    function openModal() {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeModalFunc() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Validate location
+    function validateLocation(location) {
+        const isAreaValid = puneDeliveryAreas.some(area => 
+            area.toLowerCase().includes(location.toLowerCase())
+        );
+        const isPincodeValid = punePincodes.includes(location);
+        
+        return isAreaValid || isPincodeValid;
+    }
+
+    // Update UI based on validation
+    function updateLocationUI(isValid, location = '') {
+        if (isValid) {
+            locationError.classList.add('hidden');
+            locationSuccess.classList.remove('hidden');
+            confirmLocationBtn.disabled = false;
+            locationSuccess.textContent = `Great! We deliver to ${location}.`;
+            isValidLocation = true;
+            selectedLocation = location;
+        } else {
+            locationError.classList.remove('hidden');
+            locationSuccess.classList.add('hidden');
+            confirmLocationBtn.disabled = true;
+            locationError.textContent = location ? "We don't deliver to this location yet." : "Please enter a valid location.";
+            isValidLocation = false;
+        }
+    }
+
+    // Save location to localStorage
+    function saveLocation(location) {
+        localStorage.setItem('deliveryLocation', location);
+    }
+
+    // Event listeners
+    if (deliveryLocationBtn) {
+        deliveryLocationBtn.addEventListener('click', openModal);
+    }
+
+    if (mobileDeliveryBtn) {
+        mobileDeliveryBtn.addEventListener('click', openModal);
+    }
+
+    if (closeModal) {
+        closeModal.addEventListener('click', closeModalFunc);
+    }
+
+    // Handle location input
+    if (locationInput) {
+        locationInput.addEventListener('input', function(e) {
+            const location = e.target.value.trim();
+            if (location.length > 2) {
+                const isValid = validateLocation(location);
+                updateLocationUI(isValid, location);
+            } else {
+                updateLocationUI(false);
+            }
+        });
+    }
+
+    // Handle location option clicks
+    locationOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Get the location text (excluding the icon)
+            const location = this.textContent.trim().replace(/^.*?\s/, '').trim();
+            locationInput.value = location;
+            updateLocationUI(true, location);
+        });
+    });
+
+    // Handle confirm location
+    if (confirmLocationBtn) {
+        confirmLocationBtn.addEventListener('click', function() {
+            if (isValidLocation && selectedLocation) {
+                selectedLocationSpan.textContent = selectedLocation;
+                mobileSelectedLocationSpan.textContent = selectedLocation;
+                saveLocation(selectedLocation);
+                closeModalFunc();
+            }
+        });
+    }
+
+    // Handle current location
+    if (useCurrentLocationBtn) {
+        useCurrentLocationBtn.addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        // In a real app, you would use the coordinates to determine the location
+                        // For demo purposes, we'll just use a sample location
+                        const demoLocation = "Koregaon Park";
+                        locationInput.value = demoLocation;
+                        updateLocationUI(true, demoLocation);
+                    },
+                    function(error) {
+                        locationError.classList.remove('hidden');
+                        locationError.textContent = "Unable to get your location. Please enter manually.";
+                        console.error("Geolocation error:", error);
+                    }
+                );
+            } else {
+                locationError.classList.remove('hidden');
+                locationError.textContent = "Geolocation is not supported by your browser.";
+            }
+        });
+    }
+
+    // Load saved location if exists
+    const savedLocation = localStorage.getItem('deliveryLocation');
+    if (savedLocation && selectedLocationSpan && mobileSelectedLocationSpan) {
+        selectedLocationSpan.textContent = savedLocation;
+        mobileSelectedLocationSpan.textContent = savedLocation;
+        selectedLocation = savedLocation;
+    }
+
+    // Close modal when clicking outside
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModalFunc();
+            }
+        });
+    }
+});
+
+
+
+</script>
+
+

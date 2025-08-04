@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="bg-pink-500 text-white py-5 shadow-md">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl font-bold">My Wishlist</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Wishlist Items Grid -->
+        <div id="wishlist-items" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Items will be dynamically inserted here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-wishlist" class="text-center py-12 hidden">
+            <p class="text-gray-600 text-lg">Your wishlist is empty. Start adding items you love!</p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const wishlistContainer = document.getElementById('wishlist-items');
+            const emptyMessage = document.getElementById('empty-wishlist');
+            
+            // Load wishlist from localStorage
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            
+            function displayWishlist() {
+                wishlistContainer.innerHTML = '';
+                
+                if (wishlist.length === 0) {
+                    emptyMessage.classList.remove('hidden');
+                    return;
+                }
+                
+                emptyMessage.classList.add('hidden');
+                
+                wishlist.forEach((item, index) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 hover:-translate-y-1';
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold mb-2">${item.name}</h3>
+                            <div class="text-pink-500 font-bold mb-4">$${item.price}</div>
+                            <button class="w-full bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded transition-colors duration-300 remove-btn" data-index="${index}">
+                                Remove from Wishlist
+                            </button>
+                        </div>
+                    `;
+                    wishlistContainer.appendChild(itemElement);
+                });
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = this.getAttribute('data-index');
+                        wishlist.splice(index, 1);
+                        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                        displayWishlist();
+                        updateWishlistCount();
+                    });
+                });
+            }
+            
+            displayWishlist();
+        });
+    </script>
+</body>
+</html>

@@ -42,6 +42,8 @@
                 text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
             }
         }
+
+        
     </style>
 </head>
 <body class="bg-gray-50">
@@ -186,7 +188,7 @@
     
    <!-- Product Categories Section -->
 <section class="py-12 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="text-center mb-12">
             <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -277,7 +279,7 @@
   <div class="overflow-x-auto pb-4">
     <div class="flex gap-6 sm:gap-8 px-2 w-max mx-auto">
       <!-- Birthday Cakes -->
-      <a href="cakes1.html" class="group w-72 flex-shrink-0 text-center overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+      <a href="/cakes/Allcakes.html" class="group w-72 flex-shrink-0 text-center overflow-hidden transition-transform duration-300 hover:-translate-y-2">
         <div class="w-full h-72 overflow-hidden rounded-t-full border-4 border-pink-100 group-hover:border-pink-200 transition-colors duration-300">
           <img src="IMG/bday girl.jpg" alt="Birthday Cakes"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -329,10 +331,14 @@
 
 </div>
 
- 
- <!-- Cakes & Pastries -->
+<!-- Cakes & Pastries -->
 <section class="py-8 bg-gray-50">
     <div class="max-w-8xl px-4 mx-auto">
+        <!-- Notification -->
+        <div id="notification" class="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg hidden transition-opacity duration-300 z-50">
+            <span id="notification-text"></span>
+        </div>
+
         <!-- Cakes Section -->
         <div class="mb-16">
             <div class="text-center">
@@ -342,68 +348,104 @@
             
             <div class="grid grid-cols-1 gap-6 mt-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <!-- Cake 1 -->
-                <a href="cakes1.html" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
-                    <div class="overflow-hidden h-60">
-                        <img src="/IMG/BISCOFF.jpg" 
+                <div class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl relative">
+                    <div class="overflow-hidden h-60 relative">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" 
                              alt="Chocolate Fudge Cake" 
                              class="object-cover w-full h-full card-image">
+                        <button class="absolute top-3 right-3 wishlist-icon text-gray-400 hover:text-red-500" 
+                                onclick="toggleWishlist(this, 'chocolate-fudge-cake', 'Chocolate Fudge Cake', '₹2,499', 'Rich chocolate layers with creamy fudge', 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop')">
+                            <i class="fas fa-heart text-xl"></i>
+                        </button>
                     </div>
                     <div class="p-5">
                         <h3 class="text-lg font-semibold">Chocolate Fudge Cake</h3>
                         <p class="mt-2 text-gray-600">Rich chocolate layers with creamy fudge</p>
-                        <div class="mt-4">
+                        <div class="mt-4 flex items-center justify-between">
                             <span class="text-xl font-bold text-primary">₹2,499</span>
+                            <a href="product-details.html?id=chocolate-fudge-cake" 
+                               class="view-details-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center space-x-2">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
                 
                 <!-- Cake 2 -->
-                <a href="/product/red-velvet-dream" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
-                    <div class="overflow-hidden h-60">
-                        <img src="IMG/Bday3.jpg" 
+                <div class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl relative">
+                    <div class="overflow-hidden h-60 relative">
+                        <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=300&fit=crop" 
                              alt="Red Velvet Dream" 
                              class="object-cover w-full h-full card-image">
+                        <button class="absolute top-3 right-3 wishlist-icon text-gray-400 hover:text-red-500" 
+                                onclick="toggleWishlist(this, 'red-velvet-dream', 'Red Velvet Dream', '₹2,799', 'Classic velvet cake with cream cheese frosting', 'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=300&fit=crop')">
+                            <i class="fas fa-heart text-xl"></i>
+                        </button>
                     </div>
                     <div class="p-5">
                         <h3 class="text-lg font-semibold">Red Velvet Dream</h3>
                         <p class="mt-2 text-gray-600">Classic velvet cake with cream cheese frosting</p>
-                        <div class="mt-4">
+                        <div class="mt-4 flex items-center justify-between">
                             <span class="text-xl font-bold text-primary">₹2,799</span>
+                            <a href="product-details.html?id=red-velvet-dream" 
+                               class="view-details-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center space-x-2">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
                 
                 <!-- Cake 3 -->
-                <a href="/product/berry-cheesecake" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
-                    <div class="overflow-hidden h-60">
-                        <img src="IMG/MANGO.jpg" 
+                <div class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl relative">
+                    <div class="overflow-hidden h-60 relative">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop" 
                              alt="Berry Cheesecake" 
                              class="object-cover w-full h-full card-image">
+                        <button class="absolute top-3 right-3 wishlist-icon text-gray-400 hover:text-red-500" 
+                                onclick="toggleWishlist(this, 'berry-cheesecake', 'Berry Cheesecake', '₹2,999', 'Creamy cheesecake topped with fresh berries', 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop')">
+                            <i class="fas fa-heart text-xl"></i>
+                        </button>
                     </div>
                     <div class="p-5">
                         <h3 class="text-lg font-semibold">Berry Cheesecake</h3>
                         <p class="mt-2 text-gray-600">Creamy cheesecake topped with fresh berries</p>
-                        <div class="mt-4">
+                        <div class="mt-4 flex items-center justify-between">
                             <span class="text-xl font-bold text-primary">₹2,999</span>
+                            <a href="product-details.html?id=berry-cheesecake" 
+                               class="view-details-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center space-x-2">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
                 
                 <!-- Cake 4 -->
-                <a href="/product/lemon-meringue" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
-                    <div class="overflow-hidden h-60">
-                        <img src="IMG/ann2.jpg" 
+                <div class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl relative">
+                    <div class="overflow-hidden h-60 relative">
+                        <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?w=400&h=300&fit=crop" 
                              alt="Lemon Meringue" 
                              class="object-cover w-full h-full card-image">
+                        <button class="absolute top-3 right-3 wishlist-icon text-gray-400 hover:text-red-500" 
+                                onclick="toggleWishlist(this, 'lemon-meringue', 'Lemon Meringue', '₹2,599', 'Tangy lemon cake with fluffy meringue', 'https://images.unsplash.com/photo-1587668178277-295251f900ce?w=400&h=300&fit=crop')">
+                            <i class="fas fa-heart text-xl"></i>
+                        </button>
                     </div>
                     <div class="p-5">
                         <h3 class="text-lg font-semibold">Lemon Meringue</h3>
                         <p class="mt-2 text-gray-600">Tangy lemon cake with fluffy meringue</p>
-                        <div class="mt-4">
+                        <div class="mt-4 flex items-center justify-between">
                             <span class="text-xl font-bold text-primary">₹2,599</span>
+                            <a href="product-details.html?id=lemon-meringue" 
+                               class="view-details-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center space-x-2">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
         
@@ -416,72 +458,185 @@
             
             <div class="grid grid-cols-1 gap-6 mt-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <!-- Pastry 1 -->
-                <a href="/product/butter-croissants" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
-                    <div class="overflow-hidden h-60">
-                        <img src="IMG/pastry6.jpg" 
-                             alt="Croissants" 
+                <div class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl relative">
+                    <div class="overflow-hidden h-60 relative">
+                        <img src="https://images.unsplash.com/photo-1549903072-7e6e0bedb7fb?w=400&h=300&fit=crop" 
+                             alt="Butter Croissants" 
                              class="object-cover w-full h-full card-image">
+                        <button class="absolute top-3 right-3 wishlist-icon text-gray-400 hover:text-red-500" 
+                                onclick="toggleWishlist(this, 'butter-croissants', 'Butter Croissants', '₹299', 'Flaky, buttery layers of perfection and Love', 'https://images.unsplash.com/photo-1549903072-7e6e0bedb7fb?w=400&h=300&fit=crop')">
+                            <i class="fas fa-heart text-xl"></i>
+                        </button>
                     </div>
                     <div class="p-5">
                         <h3 class="text-lg font-semibold">Butter Croissants</h3>
                         <p class="mt-2 text-gray-600">Flaky, buttery layers of perfection and Love</p>
-                        <div class="mt-4">
+                        <div class="mt-4 flex items-center justify-between">
                             <span class="text-xl font-bold text-primary">₹299</span>
+                            <a href="product-details.html?id=butter-croissants" 
+                               class="view-details-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center space-x-2">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
                 
                 <!-- Pastry 2 -->
-                <a href="/product/french-macarons" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
-                    <div class="overflow-hidden h-60">
-                        <img src="IMG/pastry5.jpg" 
-                             alt="Macarons" 
+                <div class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl relative">
+                    <div class="overflow-hidden h-60 relative">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop" 
+                             alt="French Macarons" 
                              class="object-cover w-full h-full card-image">
+                        <button class="absolute top-3 right-3 wishlist-icon text-gray-400 hover:text-red-500" 
+                                onclick="toggleWishlist(this, 'french-macarons', 'French Macarons', '₹1,099/doz', 'Assorted flavors of delicate macarons', 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop')">
+                            <i class="fas fa-heart text-xl"></i>
+                        </button>
                     </div>
                     <div class="p-5">
                         <h3 class="text-lg font-semibold">French Macarons</h3>
                         <p class="mt-2 text-gray-600">Assorted flavors of delicate macarons</p>
-                        <div class="mt-4">
+                        <div class="mt-4 flex items-center justify-between">
                             <span class="text-xl font-bold text-primary">₹1,099/doz</span>
+                            <a href="product-details.html?id=french-macarons" 
+                               class="view-details-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center space-x-2">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
                 
                 <!-- Pastry 3 -->
-                <a href="/product/cinnamon-rolls" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
-                    <div class="overflow-hidden h-60">
-                        <img src="IMG/pastry.jpg" 
+                <div class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl relative">
+                    <div class="overflow-hidden h-60 relative">
+                        <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&h=300&fit=crop" 
                              alt="Cinnamon Rolls" 
                              class="object-cover w-full h-full card-image">
+                        <button class="absolute top-3 right-3 wishlist-icon text-gray-400 hover:text-red-500" 
+                                onclick="toggleWishlist(this, 'cinnamon-rolls', 'Cinnamon Rolls', '₹449', 'Soft, gooey rolls with cream cheese icing', 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&h=300&fit=crop')">
+                            <i class="fas fa-heart text-xl"></i>
+                        </button>
                     </div>
                     <div class="p-5">
                         <h3 class="text-lg font-semibold">Cinnamon Rolls</h3>
                         <p class="mt-2 text-gray-600">Soft, gooey rolls with cream cheese icing</p>
-                        <div class="mt-4">
+                        <div class="mt-4 flex items-center justify-between">
                             <span class="text-xl font-bold text-primary">₹449</span>
+                            <a href="product-details.html?id=cinnamon-rolls" 
+                               class="view-details-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center space-x-2">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
                 
                 <!-- Pastry 4 -->
-                <a href="/product/fresh-fruit-tarts" class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl block">
-                    <div class="overflow-hidden h-60">
-                        <img src="IMG/pastry3.jpg" 
-                             alt="Fruit Tarts" 
+                <div class="overflow-hidden transition-all duration-300 bg-white rounded-xl shadow-card hover:shadow-xl relative">
+                    <div class="overflow-hidden h-60 relative">
+                        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=crop" 
+                             alt="Fresh Fruit Tarts" 
                              class="object-cover w-full h-full card-image">
+                        <button class="absolute top-3 right-3 wishlist-icon text-gray-400 hover:text-red-500" 
+                                onclick="toggleWishlist(this, 'fresh-fruit-tarts', 'Fresh Fruit Tarts', '₹549', 'Buttery crust with pastry cream and fruits', 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=crop')">
+                            <i class="fas fa-heart text-xl"></i>
+                        </button>
                     </div>
                     <div class="p-5">
                         <h3 class="text-lg font-semibold">Fresh Fruit Tarts</h3>
                         <p class="mt-2 text-gray-600">Buttery crust with pastry cream and fruits</p>
-                        <div class="mt-4">
+                        <div class="mt-4 flex items-center justify-between">
                             <span class="text-xl font-bold text-primary">₹549</span>
+                            <a href="product-details.html?id=fresh-fruit-tarts" 
+                               class="view-details-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center space-x-2">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    // Initialize wishlist
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    let wishlistDetails = JSON.parse(localStorage.getItem('wishlistDetails')) || [];
+
+    // Toggle wishlist
+    function toggleWishlist(element, id, name, price, description, image) {
+        const isInWishlist = wishlist.includes(id);
+        if (isInWishlist) {
+            wishlist = wishlist.filter(item => item !== id);
+            wishlistDetails = wishlistDetails.filter(item => item.id !== id);
+            element.classList.remove('active');
+            element.style.color = '#9ca3af';
+            showNotification('Removed from wishlist');
+        } else {
+            wishlist.push(id);
+            wishlistDetails.push({ id, name, price, description, image });
+            element.classList.add('active');
+            element.style.color = '#ef4444';
+            showNotification('Added to wishlist');
+        }
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        localStorage.setItem('wishlistDetails', JSON.stringify(wishlistDetails));
+        updateWishlistCount();
+    }
+
+    // Update wishlist count
+    function updateWishlistCount() {
+        const wishlistCount = document.getElementById('wishlist-count');
+        if (wishlistCount) {
+            wishlistCount.textContent = wishlist.length;
+            wishlistCount.classList.toggle('hidden', wishlist.length === 0);
+        }
+    }
+
+    // Show notification
+    function showNotification(message) {
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+        if (notification && notificationText) {
+            notificationText.textContent = message;
+            notification.classList.remove('hidden');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.classList.add('hidden');
+            }, 3000);
+        }
+    }
+
+    // Initialize counters when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        updateWishlistCount();
+    });
+</script>
+
+<!-- Updated Banner Section -->
+<section class="relative w-full h-64 md:h-96 lg:h-[500px] overflow-hidden">
+    <!-- Background Image -->
+    <img 
+        src="/IMG/MAIN BANNER 6.jpg" 
+        alt="Banner Image"
+        class="w-full h-full object-cover object-center"
+    >
+    
+    <!-- Optional Overlay -->
+    <div class="absolute inset-0 bg-black/30"></div>
+    
+    <!-- Content (optional) -->
+    <div class="absolute inset-0 flex items-center justify-center text-center px-4">
+        <h1 class="text-xl sm:text-2xl md:text-4xl font-bold text-white drop-shadow-lg px-4">
+           "Freshly Baked Happiness – Just a Click Away!"
+        </h1>
+    </div>
+</section>
+
 
 <!-- Category Cards Section -->
 <section class="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -813,170 +968,311 @@
 
 
 <script>
-    // Load header content
-    fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-container').innerHTML = data;
-            // Initialize header scripts after loading
-            initializeHeaderScripts();
-        })
-        .catch(error => console.error('Error loading header:', error));
-
-    function initializeHeaderScripts() {
-        // ==================== DELIVERY LOCATION ====================
-        const puneDeliveryAreas = [
-            'Koregaon Park', 'Baner', 'Wakad', 'Hinjewadi', 'FC Road', 'Viman Nagar',
-            'Kothrud', 'Aundh', 'Shivaji Nagar', 'Camp', 'Deccan', 'Karve Nagar',
-            'Pune Station', 'Swargate', 'Katraj', 'Kondhwa', 'Bibwewadi', 'Fursungi',
-            'Magarpatta', 'Hadapsar', 'Kharadi', 'Wagholi', 'Chinchwad', 'Pimpri',
-            'Warje', 'Bavdhan', 'Pashan', 'Sus', 'Balewadi', 'Nigdi', 'Akurdi',
-            'Ravet', 'Tathawade', 'Vishrantwadi', 'Yerawada', 'Kalyani Nagar',
-            'Nagar Road', 'Dhanori', 'Lohegaon', 'Mundwa', 'Ghorpadi', 'Wanowrie',
-            'Fatima Nagar', 'Salisbury Park', 'Parvati', 'Dhankawadi', 'Balaji Nagar',
-            'Bhavani Peth', 'Budhwar Peth', 'Kasba Peth', 'Rasta Peth', 'Sadashiv Peth'
-        ];
-
-        const punePincodes = [
-            '411001', '411002', '411003', '411004', '411005', '411006', '411007', '411008', 
-            '411009', '411010', '411011', '411012', '411013', '411014', '411015', '411016'
-        ];
-
-        // Delivery Location DOM elements
-        const modal = document.getElementById('deliveryModal');
-        const deliveryLocationBtn = document.getElementById('deliveryLocationBtn');
-        const mobileDeliveryBtn = document.getElementById('mobileDeliveryBtn');
-        const closeModal = document.getElementById('closeModal');
-        const locationInput = document.getElementById('locationInput');
-        const confirmLocationBtn = document.getElementById('confirmLocation');
-        const useCurrentLocationBtn = document.getElementById('useCurrentLocation');
-        const locationOptions = document.querySelectorAll('.location-option');
-        const selectedLocationSpan = document.getElementById('selectedLocation');
-        const mobileSelectedLocationSpan = document.getElementById('mobileSelectedLocation');
-        const locationError = document.getElementById('locationError');
-        const locationSuccess = document.getElementById('locationSuccess');
-
-        let selectedLocation = '';
-        let isValidLocation = false;
-
-        // Initialize Delivery Location if elements exist
-        if (modal && deliveryLocationBtn) {
-            // ... (keep all the delivery location functions from previous solution)
-            // Open modal, close modal, validate location, etc.
-            // (Include all the delivery location code from the previous solution)
-        }
-
-        // ==================== SEARCH BAR SUGGESTIONS ====================
-        const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
-        const suggestions = document.getElementById('suggestions');
-
-        // Sample product data - replace with your actual products
-        const searchData = [
-            'Chocolate Cake', 'Vanilla Cake', 'Red Velvet Cake', 'Black Forest Cake',
-            'Cheesecake', 'Tiramisu', 'Carrot Cake', 'Lemon Drizzle Cake',
-            'Croissant', 'Danish Pastry', 'Eclair', 'Macarons', 'Fruit Tart',
-            'Sourdough Bread', 'Whole Wheat Bread', 'Baguette', 'Focaccia',
-            'Birthday Cake', 'Wedding Cake', 'Cupcakes', 'Muffins'
-        ];
-
-        // Initialize Search if elements exist
-        if (searchInput && suggestions) {
-            // Show suggestions
-            searchInput.addEventListener('input', function(e) {
-                const query = e.target.value.toLowerCase();
-                suggestions.innerHTML = '';
+    // Load header content and initialize functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load header HTML
+        fetch('Mainheader.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
                 
-                if (query.length > 1) { // Show suggestions after 2 characters
-                    const matches = searchData.filter(item => 
-                        item.toLowerCase().includes(query)
-                    );
-                    
-                    if (matches.length > 0) {
-                        suggestions.classList.remove('hidden');
-                        matches.forEach(match => {
-                            const li = document.createElement('li');
-                            li.className = 'px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors text-sm';
-                            li.textContent = match;
-                            li.addEventListener('click', () => {
-                                searchInput.value = match;
-                                suggestions.classList.add('hidden');
-                                // Redirect to search results page or trigger search
-                                performSearch(match);
-                            });
-                            suggestions.appendChild(li);
-                        });
-                    } else {
-                        suggestions.classList.add('hidden');
-                    }
-                } else {
-                    suggestions.classList.add('hidden');
-                }
-            });
+                // Initialize all header functionality
+                initializeHeader();
+            })
+            .catch(error => console.error('Error loading header:', error));
 
-            // Search button click
-            if (searchButton) {
+        function initializeHeader() {
+            // ==================== DELIVERY LOCATION ====================
+            const puneDeliveryAreas = [
+                'Koregaon Park', 'Baner', 'Wakad', 'Hinjewadi', 'FC Road', 'Viman Nagar',
+                'Kothrud', 'Aundh', 'Shivaji Nagar', 'Camp', 'Deccan', 'Karve Nagar',
+                'Pune Station', 'Swargate', 'Katraj', 'Kondhwa', 'Bibwewadi', 'Fursungi',
+                'Magarpatta', 'Hadapsar', 'Kharadi', 'Wagholi', 'Chinchwad', 'Pimpri',
+                'Warje', 'Bavdhan', 'Pashan', 'Sus', 'Balewadi', 'Nigdi', 'Akurdi',
+                'Ravet', 'Tathawade', 'Vishrantwadi', 'Yerawada', 'Kalyani Nagar',
+                'Nagar Road', 'Dhanori', 'Lohegaon', 'Mundwa', 'Ghorpadi', 'Wanowrie',
+                'Fatima Nagar', 'Salisbury Park', 'Parvati', 'Dhankawadi', 'Balaji Nagar',
+                'Bhavani Peth', 'Budhwar Peth', 'Kasba Peth', 'Rasta Peth', 'Sadashiv Peth'
+            ];
+
+            const punePincodes = [
+                '411001', '411002', '411003', '411004', '411005', '411006', '411007', '411008', 
+                '411009', '411010', '411011', '411012', '411013', '411014', '411015', '411016'
+            ];
+
+            // Get all elements
+            const modal = document.getElementById('deliveryModal');
+            const deliveryLocationBtn = document.getElementById('deliveryLocationBtn');
+            const mobileDeliveryBtn = document.getElementById('mobileDeliveryBtn');
+            const closeModal = document.getElementById('closeModal');
+            const locationInput = document.getElementById('locationInput');
+            const confirmLocationBtn = document.getElementById('confirmLocation');
+            const useCurrentLocationBtn = document.getElementById('useCurrentLocation');
+            const locationOptions = document.querySelectorAll('.location-option');
+            const selectedLocationSpan = document.getElementById('selectedLocation');
+            const mobileSelectedLocationSpan = document.getElementById('mobileSelectedLocation');
+            const locationError = document.getElementById('locationError');
+            const locationSuccess = document.getElementById('locationSuccess');
+
+            let selectedLocation = '';
+            let isValidLocation = false;
+
+            // Delivery location functions
+            function openModal() {
+                if (modal) modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModalFunc() {
+                if (modal) modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+
+            function validateLocation(location) {
+                const isAreaValid = puneDeliveryAreas.some(area => 
+                    area.toLowerCase().includes(location.toLowerCase())
+                );
+                const isPincodeValid = punePincodes.includes(location);
+                return isAreaValid || isPincodeValid;
+            }
+
+            function updateLocationUI(isValid, location = '') {
+                if (isValid) {
+                    if (locationError) locationError.classList.add('hidden');
+                    if (locationSuccess) {
+                        locationSuccess.classList.remove('hidden');
+                        locationSuccess.textContent = `Great! We deliver to ${location}.`;
+                    }
+                    if (confirmLocationBtn) confirmLocationBtn.disabled = false;
+                    isValidLocation = true;
+                    selectedLocation = location;
+                } else {
+                    if (locationError) {
+                        locationError.classList.remove('hidden');
+                        locationError.textContent = location ? "We don't deliver to this location yet." : "Please enter a valid location.";
+                    }
+                    if (locationSuccess) locationSuccess.classList.add('hidden');
+                    if (confirmLocationBtn) confirmLocationBtn.disabled = true;
+                    isValidLocation = false;
+                }
+            }
+
+            function saveLocation(location) {
+                localStorage.setItem('deliveryLocation', location);
+            }
+
+            // Event listeners
+            if (deliveryLocationBtn) {
+                deliveryLocationBtn.addEventListener('click', openModal);
+            }
+
+            if (mobileDeliveryBtn) {
+                mobileDeliveryBtn.addEventListener('click', openModal);
+            }
+
+            if (closeModal) {
+                closeModal.addEventListener('click', closeModalFunc);
+            }
+
+            if (locationInput) {
+                locationInput.addEventListener('input', function(e) {
+                    const location = e.target.value.trim();
+                    if (location.length > 2) {
+                        updateLocationUI(validateLocation(location), location);
+                    } else {
+                        updateLocationUI(false);
+                    }
+                });
+            }
+
+            if (locationOptions) {
+                locationOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        const location = this.textContent.trim().replace(/^.*?\s/, '').trim();
+                        if (locationInput) locationInput.value = location;
+                        updateLocationUI(true, location);
+                    });
+                });
+            }
+
+            if (confirmLocationBtn) {
+                confirmLocationBtn.addEventListener('click', function() {
+                    if (isValidLocation && selectedLocation) {
+                        if (selectedLocationSpan) selectedLocationSpan.textContent = selectedLocation;
+                        if (mobileSelectedLocationSpan) mobileSelectedLocationSpan.textContent = selectedLocation;
+                        saveLocation(selectedLocation);
+                        closeModalFunc();
+                    }
+                });
+            }
+
+            if (useCurrentLocationBtn) {
+                useCurrentLocationBtn.addEventListener('click', function() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            function() {
+                                const demoLocation = "Koregaon Park";
+                                if (locationInput) locationInput.value = demoLocation;
+                                updateLocationUI(true, demoLocation);
+                            },
+                            function(error) {
+                                if (locationError) {
+                                    locationError.classList.remove('hidden');
+                                    locationError.textContent = "Unable to get your location. Please enter manually.";
+                                }
+                                console.error("Geolocation error:", error);
+                            }
+                        );
+                    } else if (locationError) {
+                        locationError.classList.remove('hidden');
+                        locationError.textContent = "Geolocation is not supported by your browser.";
+                    }
+                });
+            }
+
+            // ==================== MOBILE MENU ====================
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // ==================== SEARCH FUNCTIONALITY ====================
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            const suggestions = document.getElementById('suggestions');
+
+            if (searchInput && suggestions) {
+                const searchData = [
+                    // Cake Types
+                    'Chocolate Cake', 'Vanilla Cake', 'Cheesecake', 'Red Velvet Cake', 'Fruit Cake',
+                    'Mango Cake', 'Butterscotch Cake', 'Black Forest Cake', 'Pineapple Cake',
+                    'Strawberry Cake', 'Photo Cake', 'Bento Cake', 'Heart Shaped Cake',
+                    'Pull Me Up Cake', 'Pinata Cake', 'Bomb Cake', 'Fondant Cake', 'Multi Tier Cake',
+                    
+                    // Cake Occasions
+                    'Birthday Cake', 'Anniversary Cake', 'Wedding Cake', 'Graduation Cake',
+                    'Baby Shower Cake', 'Engagement Cake', 'Retirement Cake', 'Farewell Cake',
+                    
+                    // Kids Cakes
+                    'Barbie Cake', 'Car Theme Cake', 'Cartoon Cake', 'Spiderman Cake',
+                    'Superhero Cake', 'Cricket Cake',
+                    
+                    // Pastry Types
+                    'Cupcake', 'Muffin', 'Donut', 'Macaron', 'Croissant', 'Danish Pastry',
+                    
+                    // Pastry Flavors
+                    'Chocolate Pastry', 'Vanilla Pastry', 'Strawberry Pastry', 'Blueberry Pastry',
+                    'Lemon Pastry', 'Matcha Pastry',
+                    
+                    // Specialty Pastries
+                    'Gluten-Free Pastry', 'Sugar-Free Pastry', 'Vegan Pastry', 'Keto-Friendly Pastry',
+                    'Seasonal Special Pastry', 'Mini Pastry Box', 'Eggless Cake',
+                    
+                 
+                ];
+
+                // Show search suggestions
+                function showSuggestions(matches) {
+                    suggestions.innerHTML = '';
+                    
+                    if (matches.length === 0) {
+                        suggestions.classList.add('hidden');
+                        return;
+                    }
+                    
+                    matches.forEach(match => {
+                        const li = document.createElement('li');
+                        li.className = 'px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors text-sm';
+                        li.textContent = match;
+                        
+                        li.addEventListener('click', function() {
+                            searchInput.value = match;
+                            suggestions.classList.add('hidden');
+                            performSearch(match);
+                        });
+                        
+                        suggestions.appendChild(li);
+                    });
+                    
+                    suggestions.classList.remove('hidden');
+                }
+
+                // Get matching suggestions
+                function getSuggestions(input) {
+                    if (input.length < 2) return [];
+                    
+                    const inputLower = input.toLowerCase();
+                    return searchData.filter(item => 
+                        item.toLowerCase().includes(inputLower)
+                    ).slice(0, 8); // Limit to 8 suggestions
+                }
+
+                // Perform search (redirect to search page)
+                function performSearch(query) {
+                    // In a real implementation, this would redirect to a search results page
+                    console.log('Searching for:', query);
+                    // window.location.href = `/search.html?q=${encodeURIComponent(query)}`;
+                }
+
+                // Event listeners for search
+                searchInput.addEventListener('input', function(e) {
+                    const input = e.target.value.trim();
+                    const matches = getSuggestions(input);
+                    showSuggestions(matches);
+                });
+                
+                searchInput.addEventListener('focus', function() {
+                    if (searchInput.value.trim().length > 1) {
+                        const matches = getSuggestions(searchInput.value.trim());
+                        showSuggestions(matches);
+                    }
+                });
+                
+                searchInput.addEventListener('blur', function() {
+                    // Hide suggestions after a small delay to allow click events to register
+                    setTimeout(() => {
+                        suggestions.classList.add('hidden');
+                    }, 200);
+                });
+
                 searchButton.addEventListener('click', function() {
                     const query = searchInput.value.trim();
                     if (query) {
                         performSearch(query);
                     }
                 });
+
+                // Handle Enter key press
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const query = searchInput.value.trim();
+                        if (query) {
+                            performSearch(query);
+                        }
+                    }
+                });
+
+                // Close suggestions when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!searchInput.contains(e.target)) {
+                        suggestions.classList.add('hidden');
+                    }
+                });
             }
 
-            // Hide suggestions when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
-                    suggestions.classList.add('hidden');
-                }
-            });
-
-            // Keyboard navigation
-            searchInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    const query = searchInput.value.trim();
-                    if (query) {
-                        performSearch(query);
-                    }
-                }
-            });
+            // Load saved location
+            const savedLocation = localStorage.getItem('deliveryLocation');
+            if (savedLocation) {
+                if (selectedLocationSpan) selectedLocationSpan.textContent = savedLocation;
+                if (mobileSelectedLocationSpan) mobileSelectedLocationSpan.textContent = savedLocation;
+                selectedLocation = savedLocation;
+            }
         }
-
-        // Function to perform the actual search
-        function performSearch(query) {
-            suggestions.classList.add('hidden');
-            console.log('Searching for:', query); // Replace with actual search logic
-            
-            // In a real implementation, you would:
-            // 1. Redirect to a search results page: 
-            // window.location.href = `/search.html?q=${encodeURIComponent(query)}`;
-            // OR
-            // 2. Make an AJAX request to fetch search results
-        }
-
-        // ==================== MOBILE MENU TOGGLE ====================
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // Load saved delivery location if exists
-        const savedLocation = localStorage.getItem('deliveryLocation');
-        if (savedLocation && selectedLocationSpan && mobileSelectedLocationSpan) {
-            selectedLocationSpan.textContent = savedLocation;
-            mobileSelectedLocationSpan.textContent = savedLocation;
-            selectedLocation = savedLocation;
-        }
-    }
-</script>
-
-
-
-
-
+    });
+</script>                   
 </body>
 </html>
